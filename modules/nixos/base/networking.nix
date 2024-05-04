@@ -5,11 +5,6 @@ _: {
   # https://avahi.org/
   services.avahi = {
     enable = false;
-    nssmdns4 = false;
-    publish = {
-      enable = false;
-      domain = false;
-      userServices = false;
-    };
+    
   };
 }

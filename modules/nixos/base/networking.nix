@@ -3,13 +3,13 @@ _: {
   # With this enabled, you can access your machine at <hostname>.local
   # it's more convenient than using the IP address.
   # https://avahi.org/
-  services.avahi = {
-    enable = false;
-    nssmdns4 = false;
-    publish = {
-      enable = true;
-      domain = true;
-      userServices = true;
-    };
-  };
+  # services.avahi = {
+  #   enable = false;
+  #   nssmdns4 = false;
+  #   publish = {
+  #     enable = true;
+  #     domain = true;
+  #     userServices = true;
+  #   };
+  # };
 }

@@ -8,16 +8,16 @@ let
   hostName = "twr-z790"; # Define your hostname.
 in {
   imports = [
-    #./netdev-mount.nix
+    ./netdev-mount.nix
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
 
     # Video devices
     ../../hardware/gpu/intel
-    ../../hardware/gpu/nvidia
+    #../../hardware/gpu/nvidia
 
-    #./impermanence.nix
-    #./secureboot.nix
+    ./impermanence.nix
+    ./secureboot.nix
   ];
 
   networking = {
@@ -40,12 +40,12 @@ in {
   #services.xserver.videoDrivers = ["nvidia"]; # will install nvidia-vaapi-driver by default
   services.xserver.videoDrivers = ["i915"]; # 
   # Enable the KDE Plasma Desktop Environment.
-      displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true; 
+      # displayManager.sddm.enable = true;
+      # desktopManager.plasma5.enable = true; 
 
-      # Configure keymap in X11
-      xkb.layout = "us";
-      xkb.variant = "";
+      # # Configure keymap in X11
+      # xkb.layout = "us";
+      # xkb.variant = "";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

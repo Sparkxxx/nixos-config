@@ -1,6 +1,6 @@
 {lib}: {
   username = "sparkx";
-  userfullname = "sparkx";
-  useremail = "me@xsz.ro";
+  userfullname = "io sparkx";
+  useremail = "io@iotec.ro";
   networking = import ./networking.nix {inherit lib;};
 }

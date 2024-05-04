@@ -53,53 +53,74 @@
 
     twr-z790 = {
       # Desktop sparkx
-      #iface_1 = "enp5s0";
-      iface_1_mac = "74:56:3c:c3:e5:3b";
-      iface_1_linkconfig_name = "mobolan";
-      iface_1_enableIPv6 = false;
-      iface_1_ipv4 = "10.111.0.220";
-      iface_1_defaultGateway = "10.111.0.1";
-      iface_1_nameservers = [
-        "10.111.0.1" # t0mm-gw
-        "10.215.0.1" # opnsfw.ops.t0mm.iotec.ro:65456
-      ];
-      iface_1_prefixLength = 24;
+        iface = "enp3s0";
+        ipv4 = "10.111.0.220";
 
 
-      #iface_2 = "enp5s0";
-      iface_2_mac = "1c:86:0b:21:08:54";
-      iface_2_linkconfig_name = "pcielan";
-      iface_2_enableIPv6 = false;
-      # iface_2_ipv4 = "10.111.0.220";
-      # iface_2_prefixLength = 24;
+      # #iface_1 = "enp5s0";
+      # iface_1_mac = "74:56:3c:c3:e5:3b";
+      # iface_1_linkconfig_name = "mobolan";
+      # iface_1_enableIPv6 = false;
+      # iface_1_ipv4 = "10.111.0.220";
+      # iface_1_defaultGateway = "10.111.0.1";
+      # iface_1_nameservers = [
+      #   "10.111.0.1" # t0mm-gw
+      #   "10.215.0.1" # opnsfw.ops.t0mm.iotec.ro:65456
+      # ];
+      # iface_1_prefixLength = 24;
+
+
+      # #iface_2 = "enp5s0";
+      # iface_2_mac = "1c:86:0b:21:08:54";
+      # iface_2_linkconfig_name = "pcielan";
+      # iface_2_enableIPv6 = false;
+      # # iface_2_ipv4 = "10.111.0.220";
+      # # iface_2_prefixLength = 24;
     };
 
-    aquamarine = {
-      # VM
-      iface = "enp2s0";
-      ipv4 = "192.168.5.101";
-    };
+    # aquamarine = {
+    #   # VM
+    #   iface = "enp2s0";
+    #   ipv4 = "192.168.5.101";
+    # };
   };
 
   hostsInterface =
     lib.attrsets.mapAttrs
     (
       key: val: {
-        interfaces."${val.iface_1_linkconfig_name}" = {
+        interfaces."${val.iface}" = {
           useDHCP = false;
           ipv4.addresses = [
             {
-              address = val.iface_1_ipv4;
-              prefixLength = val.iface_1_prefixLength;
+              inherit prefixLength;
+              address = val.ipv4;
             }
           ];
         };
-        defaultGateway = "${val.iface_1_defaultGateway}";
-        nameservers = "${val.iface_1_nameservers}";
-        enableIPv6 = "${val.iface_1_enableIPv6}";
       }
     )
     hostsAddr;
+
+  # hostsInterface =
+  #   lib.attrsets.mapAttrs
+  #   (
+  #     key: val: {
+  #       interfaces."${val.iface_1_linkconfig_name}" = {
+  #         useDHCP = false;
+  #         ipv4.addresses = [
+  #           {
+  #             address = val.iface_1_ipv4;
+  #             prefixLength = val.iface_1_prefixLength;
+  #           }
+  #         ];
+  #       };
+  #       defaultGateway = "${val.iface_1_defaultGateway}";
+  #       nameservers = "${val.iface_1_nameservers}";
+  #       enableIPv6 = "${val.iface_1_enableIPv6}";
+  #     }
+  #   )
+  #   hostsAddr;
 
   ssh = {
     # define the host alias for remote builders
@@ -120,7 +141,7 @@
         acc
         + ''
           Host ${host}
-            HostName ${val.iface_1_ipv4}
+            HostName ${val.ipv4}
             Port 22
         '')
       ""
@@ -137,7 +158,7 @@
       #     => { x = "bar-a"; y = "bar-b"; }
       lib.attrsets.mapAttrs
       (host: value: {
-        hostNames = [host hostsAddr.${host}.iface_1_ipv4];
+        hostNames = [host hostsAddr.${host}.ipv4];
         publicKey = value.publicKey;
       })
       {

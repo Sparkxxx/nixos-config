@@ -75,18 +75,13 @@
   };
 
   # equal to `mount -t tmpfs tmpfs /`
-  # fileSystems."/" = {
-  #   device = "tmpfs";
-  #   fsType = "tmpfs";
-  #   # set mode to 755, otherwise systemd will set it to 777, which cause problems.
-  #   # relatime: Update inode access times relative to modify or change time.
-  #   options = ["relatime" "mode=755"];
-  # };
-
+  # Create the ramdrive mounted on /mnt with: mount -t tmpfs tmpfs /mnt
   fileSystems."/" = {
-    device = "none";
+    device = "tmpfs";
     fsType = "tmpfs";
-    options = [ "defaults" "size=25%" "mode=755" ];
+    # set mode to 755, otherwise systemd will set it to 777, which cause problems.
+    # relatime: Update inode access times relative to modify or change time.
+    options = ["relatime" "mode=755"];
   };
 
   fileSystems."/nix" = {

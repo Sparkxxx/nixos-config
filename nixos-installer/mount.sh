@@ -1,4 +1,4 @@
-mkdir /mnt/{nix,gnu,tmp,swap,persistent,snapshots,fulldisk,boot}  # mount-1
+mkdir -p /mnt/{nix,gnu,tmp,swap,persistent,snapshots,fulldisk,boot}  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@nix /dev/mapper/crypted-nixos /mnt/nix  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@guix /dev/mapper/crypted-nixos /mnt/gnu  # mount-1
 mount -o compress-force=zstd:1,subvol=@tmp /dev/mapper/crypted-nixos /mnt/tmp  # mount-1

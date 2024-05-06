@@ -132,7 +132,7 @@ umount /mnt  # create-btrfs
 #     1. Extend the life of the SSD.
 #     2. improve the performance of disks with low IOPS / RW throughput, such as HDD and SATA SSD.
 #   2. Save the disk space.
-mkdir /mnt/{nix,gnu,tmp,swap,persistent,snapshots,boot}  # mount-1
+mkdir /mnt/{nix,gnu,tmp,swap,persistent,snapshots,fulldisk,boot}  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@nix /dev/mapper/crypted-nixos /mnt/nix  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@guix /dev/mapper/crypted-nixos /mnt/gnu  # mount-1
 mount -o compress-force=zstd:1,subvol=@tmp /dev/mapper/crypted-nixos /mnt/tmp  # mount-1

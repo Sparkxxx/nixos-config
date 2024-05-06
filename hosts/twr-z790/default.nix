@@ -13,7 +13,7 @@ in {
     ./hardware-configuration.nix
 
     # Video devices
-    ../../hardware/gpu/intel
+    #../../hardware/gpu/intel
     #../../hardware/gpu/nvidia
 
     ./impermanence.nix

@@ -30,7 +30,7 @@
   boot.extraModulePackages = [ ];
 
   # clear /tmp on boot to get a stateless /tmp directory.
-  #boot.tmp.cleanOnBoot = true;
+  boot.tmp.cleanOnBoot = true;
 
   # Enable binfmt emulation of aarch64-linux, this is required for cross compilation.
   boot.binfmt.emulatedSystems = ["aarch64-linux" "riscv64-linux"];

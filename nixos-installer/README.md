@@ -139,6 +139,7 @@ mount -o compress-force=zstd:1,subvol=@tmp /dev/mapper/crypted-nixos /mnt/tmp  #
 mount -o subvol=@swap /dev/mapper/crypted-nixos /mnt/swap  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@persistent /dev/mapper/crypted-nixos /mnt/persistent  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@snapshots /dev/mapper/crypted-nixos /mnt/snapshots  # mount-1
+mount -o compress-force=zstd:1,noatime,subvol=@fulldisk /dev/mapper/crypted-nixos /mnt/fulldisk  # mount-1
 mount /dev/nvme0n1p1 /mnt/boot  # mount-1
 
 # create a swapfile on btrfs file system

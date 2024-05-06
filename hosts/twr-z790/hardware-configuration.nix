@@ -65,7 +65,7 @@
     };
   };
 
-  fileSystems."/crypted-nixos" = {
+  fileSystems."/fulldisk" = {
     device = "/dev/disk/by-uuid/531bea73-a1b3-45b9-9e5c-30298a449701";
     fsType = "btrfs";
     # https://btrfs.readthedocs.io/en/latest/btrfs-subvolume.html

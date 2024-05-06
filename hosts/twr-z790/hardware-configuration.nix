@@ -75,12 +75,18 @@
   };
 
   # equal to `mount -t tmpfs tmpfs /`
+  # fileSystems."/" = {
+  #   device = "tmpfs";
+  #   fsType = "tmpfs";
+  #   # set mode to 755, otherwise systemd will set it to 777, which cause problems.
+  #   # relatime: Update inode access times relative to modify or change time.
+  #   options = ["relatime" "mode=755"];
+  # };
+
   fileSystems."/" = {
-    device = "tmpfs";
+    device = "none";
     fsType = "tmpfs";
-    # set mode to 755, otherwise systemd will set it to 777, which cause problems.
-    # relatime: Update inode access times relative to modify or change time.
-    options = ["relatime" "mode=755"];
+    options = [ "defaults" "size=25%" "mode=755" ];
   };
 
   fileSystems."/nix" = {

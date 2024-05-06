@@ -60,6 +60,8 @@ And the boot flow is:
 Partitioning the disk:
 
 ```bash
+sudo su
+
 # NOTE: `cat README.md | grep part-1 > part-1.sh` to generate this script
 
 # Create a GPT partition table
@@ -98,7 +100,7 @@ cryptsetup luksFormat --type luks2 --cipher aes-xts-plain64 --hash sha512 --iter
 cryptsetup luksDump /dev/nvme0n1p2
 
 # open(unlock) the device with the passphrase you just set
-cryptsetup luksOpen /dev/nvme0n1p2 encrypted-nixos
+cryptsetup luksOpen /dev/nvme0n1p2 crypted-nixos
 
 # show disk status
 lsblk
@@ -110,11 +112,12 @@ Formatting the root partition:
 # NOTE: `cat shoukei.md | grep create-btrfs > btrfs.sh` to generate this script
 mkfs.fat -F 32 -n ESP /dev/nvme0n1p1  # create-btrfs
 # format the root partition with btrfs and label it
-mkfs.btrfs -L encrypted-nixos /dev/mapper/crypted-nixos   # create-btrfs
+mkfs.btrfs -L crypted-nixos /dev/mapper/crypted-nixos   # create-btrfs
 
 # mount the root partition and create subvolumes
 mount /dev/mapper/crypted-nixos /mnt  # create-btrfs
 btrfs subvolume create /mnt/@nix  # create-btrfs
+btrfs subvolume create /mnt/@guix  # create-btrfs
 btrfs subvolume create /mnt/@tmp  # create-btrfs
 btrfs subvolume create /mnt/@swap  # create-btrfs
 btrfs subvolume create /mnt/@persistent  # create-btrfs
@@ -129,8 +132,9 @@ umount /mnt  # create-btrfs
 #     1. Extend the life of the SSD.
 #     2. improve the performance of disks with low IOPS / RW throughput, such as HDD and SATA SSD.
 #   2. Save the disk space.
-mkdir /mnt/{nix,tmp,swap,persistent,snapshots,boot}  # mount-1
+mkdir /mnt/{nix,gnu,tmp,swap,persistent,snapshots,boot}  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@nix /dev/mapper/crypted-nixos /mnt/nix  # mount-1
+mount -o compress-force=zstd:1,noatime,subvol=@guix /dev/mapper/crypted-nixos /mnt/gnu  # mount-1
 mount -o compress-force=zstd:1,subvol=@tmp /dev/mapper/crypted-nixos /mnt/tmp  # mount-1
 mount -o subvol=@swap /dev/mapper/crypted-nixos /mnt/swap  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@persistent /dev/mapper/crypted-nixos /mnt/persistent  # mount-1
@@ -160,10 +164,11 @@ $ lsblk
 nvme0n1           259:0    0   1.8T  0 disk
 ├─nvme0n1p1       259:2    0   600M  0 part  /mnt/boot
 └─nvme0n1p2       259:3    0   1.8T  0 part
-  └─encrypted-nixos 254:0    0   1.8T  0 crypt /mnt/swap
+  └─crypted-nixos 254:0    0   1.8T  0 crypt /mnt/swap
                                              /mnt/persistent
                                              /mnt/snapshots
                                              /mnt/nix
+                                             /mnt/gnu
                                              /mnt/tmp
 
 # show swap status
@@ -174,42 +179,47 @@ Filename				Type		Size		Used		Priority
 
 ### 2. Generating the NixOS Configuration and Installing NixOS
 
-Clone this repository:
+
+1. Clone this repository:
 
 ```bash
 # enter an shell with git/vim/ssh-agent/gnumake available
-nix-shell -p git gnumake
+nix-shell -p git gnumake screen
 
 # clone this repository
 git clone https://github.com/Sparkxxx/nixos-config.git
+cd ./nixos-config/nixos-installer/
 ```
 
-Then, generate the NixOS configuration:
+2. Then, generate the NixOS configuration:
 
 ```bash
 # nixos configurations
 nixos-generate-config --root /mnt
 
 # we need to update our filesystem configs in old hardware-configuration.nix according to the generated one.
-cp /etc/nixos/hardware-configuration.nix ./nix-config/hosts/idols_ai/hardware-configuration-new.nix
-vim .
+cp /mnt/etc/nixos/hardware-configuration.nix ./nixos-config/nixos-installer/hardware-configuration-new.nix
+
+nano ../hosts/YOUR_HOST/hardware-configuration.nix
+# Update partitions' UUID to the generated ones on the new system
+# See them more easily with lsblk -f
+
 ```
+
 
 Then, Install NixOS:
 
 ```bash
-cd ~/nix-config/hosts/idols_ai/nixos-installer
-
 # run this command if you're retrying to run nixos-install
 rm -rf /mnt/etc
 
 # install nixos
 # NOTE: the root password you set here will be discarded when reboot
-nixos-install --root /mnt --flake .#ai --no-root-password --show-trace --verbose # instlall-1
+nixos-install --root /mnt --flake .#twr-z790 --no-root-password --show-trace --verbose # instlall-1
 
 # if you want to use a cache mirror, run this command instead
 # replace the mirror url with your own
-nixos-install --root /mnt --flake .#ai --no-root-password --show-trace --verbose --option substituters "https://mirror.sjtu.edu.cn/nix-channels/store"  # install-2
+nixos-install --root /mnt --flake .#twr-z790 --no-root-password --show-trace --verbose --option substituters "https://mirror.sjtu.edu.cn/nix-channels/store"  # install-2
 
 # enter into the installed system, check password & users
 # `su ryan` => `sudo -i` => enter ryan's password => successfully login

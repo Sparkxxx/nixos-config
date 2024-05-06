@@ -67,7 +67,7 @@ parted /dev/nvme0n1 -- mklabel gpt  # part-1
 
 # NixOS by default uses the ESP (EFI system partition) as its /boot partition
 # Create a 512MB EFI system partition
-parted /dev/nvme0n1 -- mkpart ESP fat32 2MB 629MB  # part-1
+parted /dev/nvme0n1 -- mkpart ESP fat32 2MB 500MB  # part-1
 
 # set the boot flag on the ESP partition
 # Format:
@@ -77,7 +77,7 @@ parted /dev/nvme0n1 -- set 1 esp on  # part-1
 # Create the root partition using the rest of the disk
 # Format:
 #   mkpart [part-type name fs-type] start end
-parted /dev/nvme0n1 -- mkpart primary 630MB 100%  # part-1
+parted /dev/nvme0n1 -- mkpart primary 500MB 100%  # part-1
 
 # show disk status
 lsblk
@@ -115,7 +115,6 @@ mkfs.btrfs -L encrypted-nixos /dev/mapper/crypted-nixos   # create-btrfs
 # mount the root partition and create subvolumes
 mount /dev/mapper/crypted-nixos /mnt  # create-btrfs
 btrfs subvolume create /mnt/@nix  # create-btrfs
-btrfs subvolume create /mnt/@guix  # create-btrfs
 btrfs subvolume create /mnt/@tmp  # create-btrfs
 btrfs subvolume create /mnt/@swap  # create-btrfs
 btrfs subvolume create /mnt/@persistent  # create-btrfs
@@ -132,7 +131,6 @@ umount /mnt  # create-btrfs
 #   2. Save the disk space.
 mkdir /mnt/{nix,tmp,swap,persistent,snapshots,boot}  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@nix /dev/mapper/crypted-nixos /mnt/nix  # mount-1
-mount -o compress-force=zstd:1,noatime,subvol=@guix /dev/mapper/crypted-nixos /mnt/gnu  # mount-1
 mount -o compress-force=zstd:1,subvol=@tmp /dev/mapper/crypted-nixos /mnt/tmp  # mount-1
 mount -o subvol=@swap /dev/mapper/crypted-nixos /mnt/swap  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@persistent /dev/mapper/crypted-nixos /mnt/persistent  # mount-1
@@ -180,10 +178,10 @@ Clone this repository:
 
 ```bash
 # enter an shell with git/vim/ssh-agent/gnumake available
-nix-shell -p git vim gnumake
+nix-shell -p git gnumake
 
 # clone this repository
-git clone https://github.com/ryan4yin/nix-config.git
+git clone https://github.com/Sparkxxx/nixos-config.git
 ```
 
 Then, generate the NixOS configuration:

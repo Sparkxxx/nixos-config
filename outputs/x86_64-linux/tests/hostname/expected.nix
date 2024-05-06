@@ -5,6 +5,8 @@
   specialExpected = {
     "ai-hyprland" = "ai";
     "ai-i3" = "ai";
+    "ai-hyprland" = "twr-z790";
+    "ai-i3" = "twr-z790";
     "shoukei-hyprland" = "shoukei";
     "shoukei-i3" = "shoukei";
   };

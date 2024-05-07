@@ -14,7 +14,17 @@
 # btrfs subvolume create /mnt/@snapshots  # create-btrfs
 # btrfs subvolume create /mnt/@fulldisk  # create-btrfs
 # btrfs subvolume list /mnt  # create-btrfs
-# umount /mnt  # create-btrfs
+
+# echo "5. Create the swapfile in the btrfs subvolume"  # create-btrfs
+# mkdir -p /mnt/swap/
+# btrfs filesystem mkswapfile --size 64g --uuid clear /mnt/swap/swapfile  # create-btrfs
+# check whether the swap subvolume has CoW disabled
+# the output of `lsattr` for the swap subvolume should be:
+#    ---------------C------ /swap/swapfile
+# if not, delete the swapfile, and rerun the commands above.
+# lsattr /mnt/swap  # mount-1
+
+# umount -R /mnt  # create-btrfs
 
 # open(unlock) the device with the passphrase you just set
 # cryptsetup luksOpen /dev/nvme0n1p2 crypted-nixos
@@ -45,13 +55,8 @@ mount
 echo "4. Mount the ESP partition"  # mount-1
 mount /dev/nvme0n1p1 /mnt/boot  # mount-1
 
-echo "5. Create the swapfile in the btrfs subvolume"  # mount-1
-btrfs filesystem mkswapfile --size 64g --uuid clear /mnt/swap/swapfile  # mount-1
-# check whether the swap subvolume has CoW disabled
-# the output of `lsattr` for the swap subvolume should be:
-#    ---------------C------ /swap/swapfile
-# if not, delete the swapfile, and rerun the commands above.
-lsattr /mnt/swap  # mount-1
+
+
 
 
 lsblk -f  # mount-1

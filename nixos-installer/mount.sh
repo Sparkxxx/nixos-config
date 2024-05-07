@@ -14,16 +14,6 @@
 # btrfs subvolume create /mnt/@snapshots  # create-btrfs
 # btrfs subvolume create /mnt/@fulldisk  # create-btrfs
 # btrfs subvolume list /mnt  # create-btrfs
-
-# echo "5. Create the swapfile in the btrfs subvolume"  # create-btrfs
-# mkdir -p /mnt/swap/
-# btrfs filesystem mkswapfile --size 64g --uuid clear /mnt/swap/swapfile  # create-btrfs
-# check whether the swap subvolume has CoW disabled
-# the output of `lsattr` for the swap subvolume should be:
-#    ---------------C------ /swap/swapfile
-# if not, delete the swapfile, and rerun the commands above.
-# lsattr /mnt/swap  # mount-1
-
 # umount -R /mnt  # create-btrfs
 
 # open(unlock) the device with the passphrase you just set
@@ -32,7 +22,7 @@
 # umount -R /mnt
 # cryptsetup close /dev/mapper/crypted-nixos
 
-# After partitions have been opened and subvolumes are in place AND /mnt is not mounted anywhere go forward !!!
+# With btrfs partition open and subvolumes in place AND /mnt is not mounted anywhere go forward !!!
 
 echo "1. Mount the in-ram ROOT partition"  # mount-1
 mount -t tmpfs -o noatime,mode=755 tmpfs /mnt  # mount-1
@@ -50,15 +40,23 @@ mount -o subvol=@swap /dev/mapper/crypted-nixos /mnt/swap  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@persistent /dev/mapper/crypted-nixos /mnt/persistent  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@snapshots /dev/mapper/crypted-nixos /mnt/snapshots  # mount-1
 mount -o compress-force=zstd:1,noatime,subvol=@fulldisk /dev/mapper/crypted-nixos /mnt/fulldisk  # mount-1
-mount 
 
 echo "4. Mount the ESP partition"  # mount-1
 mount /dev/nvme0n1p1 /mnt/boot  # mount-1
 
+# echo "5. Create the swapfile in the btrfs subvolume"  # create-btrfs
+# mkdir -p /mnt/swap/
+btrfs filesystem mkswapfile --size 64g --uuid clear /mnt/swap/swapfile  # create-btrfs
+# check whether the swap subvolume has CoW disabled
+# the output of `lsattr` for the swap subvolume should be:
+#    ---------------C------ /swap/swapfile
+# if not, delete the swapfile, and rerun the commands above.
+ lsattr /mnt/swap  # mount-1
 
 
 
-
+mount 
+ls -alh /mnt
 lsblk -f  # mount-1
 swapon -s  # mount-1
 # mount the swapfile as swap area

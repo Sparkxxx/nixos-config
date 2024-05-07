@@ -74,8 +74,8 @@
     # 2. Or just use hardware security keys like Yubikey/CanoKey.
     ## ssh-keygen -t ed25519 -a 256 -C "sparkx@twr-z790" -f ~/.ssh/twr-z790
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMC33NsH9i4yxyBDCqphoLIi3/8Bo617FBR2NHzAuCjn sparkx@twr-z790"
-      #"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPoa9uEI/gR5+klqTQwvCgD6CD5vT5iD9YCNx2xNrH3B ryan@fern"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAudnLUbBpm2U2y3gg4Y4qLEMdPexPhyLhagafqIfsgk sparkx@twr-z790"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDlxZIRJSBd7ps6dCZpMnvdnzI1dckKQmrDAqo++Mf6G nixos@wsl-lap"
       #"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPwZ9MdotnyhxIJrI4gmVshExHiZOx+FGFhcW7BaYkfR ryan@harmonica"
     ];
   };
@@ -95,16 +95,16 @@
       # status: https://mirror.sjtu.edu.cn/
       # "https://mirror.sjtu.edu.cn/nix-channels/store"
       # status: https://mirrors.ustc.edu.cn/status/
-      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      # "https://mirrors.ustc.edu.cn/nix-channels/store"
 
       "https://nix-community.cachix.org"
       # my own cache server
-      "https://ryan4yin.cachix.org"
+      # "https://ryan4yin.cachix.org"
     ];
 
     trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "ryan4yin.cachix.org-1:Gbk27ZU5AYpGS9i3ssoLlwdvMIh0NxG0w8it/cv9kbU="
+      # "ryan4yin.cachix.org-1:Gbk27ZU5AYpGS9i3ssoLlwdvMIh0NxG0w8it/cv9kbU="
     ];
     builders-use-substitutes = true;
   };

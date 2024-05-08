@@ -6,8 +6,8 @@
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nuenv.url = "github:DeterminateSystems/nuenv";
-    url = "github:nix-community/haumea/v0.2.2";
+    #nuenv.url = "github:DeterminateSystems/nuenv";
+    #url = "github:nix-community/haumea/v0.2.2";
   };
 
   outputs = inputs @ {

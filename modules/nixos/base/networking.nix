@@ -4,7 +4,12 @@ _: {
   # it's more convenient than using the IP address.
   # https://avahi.org/
   services.avahi = {
-    enable = false;
-    
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      domain = true;
+      userServices = true;
+    };
   };
 }

@@ -7,8 +7,10 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nuenv.url = "github:DeterminateSystems/nuenv";
-    #url = "github:nix-community/haumea/v0.2.2"; # myvars.whatever
-    url = "github:nix-community/haumea"; # myvars.whatever
+    haumea = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {

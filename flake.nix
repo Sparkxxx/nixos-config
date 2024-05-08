@@ -110,6 +110,7 @@
 
     nuenv.url = "github:DeterminateSystems/nuenv";
 
+    # v2ray - https://github.com/daeuniverse/dae
     daeuniverse.url = "github:daeuniverse/flake.nix";
     # daeuniverse.url = "github:daeuniverse/flake.nix/exp";
 

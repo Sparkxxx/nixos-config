@@ -21,7 +21,7 @@
     nixosConfigurations = {
       twr-z790 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = inputs // {myvars.username = "sparkx";};
+        specialArgs = inputs // { myvars.username = "sparkx"; myvars.userfullname = "sparkx"; };
         modules = [
           {networking.hostName = "twr-z790";}
 

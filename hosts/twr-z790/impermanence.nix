@@ -63,6 +63,7 @@
         "Pictures"
         "Documents"
         "Videos"
+        "_work_"
 
         {
           directory = ".gnupg";

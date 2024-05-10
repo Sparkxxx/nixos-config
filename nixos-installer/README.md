@@ -122,6 +122,7 @@ btrfs subvolume create /mnt/@tmp  # create-btrfs
 btrfs subvolume create /mnt/@swap  # create-btrfs
 btrfs subvolume create /mnt/@persistent  # create-btrfs
 btrfs subvolume create /mnt/@snapshots  # create-btrfs
+btrfs subvolume create /mnt/@fulldisk  # create-btrfs
 umount /mnt  # create-btrfs
 
 # NOTE: `cat shoukei.md | grep mount-1 > mount-1.sh` to generate this script
@@ -189,6 +190,7 @@ Filename				Type		Size		Used		Priority
 nix-shell -p git gnumake screen
 
 # clone this repository
+screen
 git clone https://github.com/Sparkxxx/nixos-config.git
 cd ./nixos-config/nixos-installer/
 ```
@@ -236,10 +238,13 @@ nixos-enter
 mv /etc/machine-id /persistent/etc/
 mv /etc/ssh /persistent/etc/
 
+# Exit system (nixos-enter)
+exit 
+
 
 # delete the generated configuration after editing
-rm -f /mnt/etc/nixos
-rm ~/nix-config/hosts/idols_ai/hardware-configuration-new.nix
+rm -f /mnt/etc/nixos/*
+rm ~/nixos-config/hosts/twr-z790/hardware-configuration-new.nix
 
 # NOTE: `cat shoukei.md | grep git-1 > git-1.sh` to generate this script
 # commit the changes after installing nixos successfully
@@ -248,7 +253,7 @@ git config --global user.name "Ryan Yin"              # git-1
 git commit -am "feat: update hardware-configuration"
 
 # copy our configuration to the installed file system
-cp -r ../nix-config /mnt/etc/nixos
+cp -r ../nixos-config/* /mnt/etc/nixos/
 
 # sync the disk, unmount the partitions, and close the encrypted device
 sync
@@ -267,9 +272,9 @@ that the new machine can pull my private secrets repo:
 
 ```bash
 # 1. Generate a new SSH key with a strong passphrase
-ssh-keygen -t ed25519 -a 256 -C "ryan@idols-ai" -f ~/.ssh/idols_ai
+ssh-keygen -t ed25519 -a 256 -C "sparkx@twr-z790" -f ~/.ssh/twr-z790
 # 2. Add the ssh key to the ssh-agent, so that nixos-rebuild can use it to pull my private secrets repo.
-ssh-add ~/.ssh/idols_ai
+ssh-add ~/.ssh/twr-z790
 ```
 
 Then follow the instructions in [../secrets/README.md](../secrets/README.md) to rekey all my secrets
@@ -279,10 +284,10 @@ decrypt them automatically on the new host when I deploy my NixOS configuration.
 After all these steps, we can finally deploy the main flake's NixOS configuration by:
 
 ```bash
-sudo mv /etc/nixos ~/nix-config
-sudo chown -R ryan:ryan ~/nix-config
+sudo mv /etc/nixos/* ~/nixos-config
+sudo chown -R sparkx:sparkx ~/nixos-config
 
-cd ~/nix-config
+cd ~/nixos-config
 
 # deploy the configuration via Justfile
 just hypr

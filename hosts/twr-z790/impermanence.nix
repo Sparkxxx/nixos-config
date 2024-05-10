@@ -55,7 +55,7 @@
     users.sparkx = {
       directories = [
         "codes"
-        "nix-config"
+        "nixos-config"
         "tmp"
 
         "Downloads"

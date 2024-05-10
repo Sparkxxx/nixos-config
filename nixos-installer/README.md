@@ -284,8 +284,12 @@ decrypt them automatically on the new host when I deploy my NixOS configuration.
 After all these steps, we can finally deploy the main flake's NixOS configuration by:
 
 ```bash
+cd /home/sparkx
 sudo mv /etc/nixos/* ~/nixos-config
+
+
 sudo chown -R sparkx:sparkx ~/nixos-config
+
 
 cd ~/nixos-config
 

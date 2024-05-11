@@ -157,7 +157,7 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    riscv64 SBCs
+    #riscv64 SBCs
     nixos-licheepi4a.url = "github:ryan4yin/nixos-licheepi4a";
     nixos-jh7110.url = "github:ryan4yin/nixos-jh7110";
 

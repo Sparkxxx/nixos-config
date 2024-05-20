@@ -42,6 +42,8 @@
     iperf3
     dnsutils # `dig` + `nslookup`
     ldns # replacement of `dig`, it provide the command `drill`
+    pciutils
+    usbutils
     wget
     curl
     aria2 # A lightweight multi-protocol & multi-source command-line download utility
@@ -74,9 +76,9 @@
     # 2. Or just use hardware security keys like Yubikey/CanoKey.
     ## ssh-keygen -t ed25519 -a 256 -C "sparkx@twr-z790" -f ~/.ssh/twr-z790
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAudnLUbBpm2U2y3gg4Y4qLEMdPexPhyLhagafqIfsgk sparkx@twr-z790"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDlxZIRJSBd7ps6dCZpMnvdnzI1dckKQmrDAqo++Mf6G nixos@wsl-lap"
-      #"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPwZ9MdotnyhxIJrI4gmVshExHiZOx+FGFhcW7BaYkfR ryan@harmonica"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ13eQloVGYlOogC/eYDUcSt7p6gV3YT9LsPrNS1RDex sparkx@twr-z790"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9zeBHu14pO6uw1q5tGlSBfP+BIp+kAE2ALuqMvMSL0 root@twr-z790"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIpUTXh2GRc399dcggY+QwRZvVa/lqOCO0XTVldDKi2z nixos@imc-lap-wsl"
     ];
   };
 

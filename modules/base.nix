@@ -44,6 +44,7 @@
     ldns # replacement of `dig`, it provide the command `drill`
     pciutils
     usbutils
+    mc
     wget
     curl
     aria2 # A lightweight multi-protocol & multi-source command-line download utility

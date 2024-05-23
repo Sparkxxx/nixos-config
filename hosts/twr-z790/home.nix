@@ -35,9 +35,7 @@
 
     # https://jeppesen.io/git-commit-sign-nix-home-manager-ssh/
       enable = true;
-      userName = "sparkx";
-      userEmail = "15813839+Sparkxxx@users.noreply.github.com";
-
+      
       # extraConfig = ''
       # Host github-sparkx
       #     IdentityFile ~/.ssh/id_ed25519_github_sparkxxx

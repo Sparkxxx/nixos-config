@@ -29,11 +29,6 @@ in {
     networkmanager.enable = true;
   };
 
-  # Failed to enable firewall due to the following error:
-  #   firewall-start[2300]: iptables: Failed to initialize nft: Protocol not supported
-  #firewall.enable = false;
-
-
   # conflict with feature: containerd-snapshotter
   # virtualisation.docker.storageDriver = "btrfs";
 

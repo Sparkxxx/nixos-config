@@ -69,8 +69,7 @@ i3 mode="default":
 
 hypr mode="default":
   use utils.nu *; \
-  #nixos-switch twr-z790-hyprland {{mode}}
-  nixos-switch --impure twr-z790-hyprland {{mode}}
+  nixos-switch twr-z790-hyprland {{mode}}
 
 
 s-i3 mode="default":

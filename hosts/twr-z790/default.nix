@@ -13,7 +13,7 @@ in {
     ./hardware-configuration.nix
 
     # Video devices
-    #../../hardware/gpu/intel
+    ../../hardware/gpu/intel
     #../../hardware/gpu/nvidia
 
     ./impermanence.nix
@@ -31,7 +31,7 @@ in {
 
   # Failed to enable firewall due to the following error:
   #   firewall-start[2300]: iptables: Failed to initialize nft: Protocol not supported
-  firewall.enable = false;
+  #firewall.enable = false;
 
 
   # conflict with feature: containerd-snapshotter

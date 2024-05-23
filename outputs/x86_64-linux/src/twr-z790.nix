@@ -10,7 +10,7 @@
   genSpecialArgs,
   ...
 } @ args: let
-  # 星野 アイ, Hoshino Ai
+  # twr-z790
   name = "twr-z790";
   base-modules = {
     nixos-modules = map mylib.relativeToRoot [

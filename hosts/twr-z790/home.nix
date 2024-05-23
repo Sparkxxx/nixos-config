@@ -29,12 +29,5 @@
     #       # required to prevent sending default identity files first.
     #       IdentitiesOnly yes
     # '';
-
-  };
-      
-      # aliases = {
-      #   pfl = "push --force-with-lease";
-      #   log1l = "log --oneline";
-      # };
   };
 }

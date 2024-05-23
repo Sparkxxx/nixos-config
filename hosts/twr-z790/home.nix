@@ -76,9 +76,9 @@
         credential.helper = "store";
       };
       
-      aliases = {
-        pfl = "push --force-with-lease";
-        log1l = "log --oneline";
-      };
+      # aliases = {
+      #   pfl = "push --force-with-lease";
+      #   log1l = "log --oneline";
+      # };
   };
 }

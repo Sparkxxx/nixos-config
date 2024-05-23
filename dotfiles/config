@@ -1,0 +1,6 @@
+Host github-sparkx
+    # git clone git@github-sparkx:Sparkxxx/<REPO>.git .
+    Hostname github.com
+    IdentityFile ~/.ssh/id_ed25519_github_sparkxxx
+    IdentitiesOnly yes # is required to prevent the SSH default behavior of sending the identity file matching the default filename for each protocol
+    AddKeysToAgent yes # lets you avoid reentering the key passphrase every time

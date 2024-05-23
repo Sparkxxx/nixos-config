@@ -1,7 +1,7 @@
 {
   # https://jeppesen.io/git-commit-sign-nix-home-manager-ssh/
-  # home.file.".ssh/allowed_signers".text =
-  #   "* ${builtins.readFile ~/.ssh/id_ed25519_github_sparkxxx.pub}";
+  home.file.".ssh/allowed_signers".text =
+    "* ${builtins.readFile /home/${myvars.username}/.ssh/id_ed25519_github_sparkxxx.pub}";
 
   ## https://wiki.nixos.org/wiki/KDE
   modules.desktop = {

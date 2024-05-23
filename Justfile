@@ -65,11 +65,11 @@ gitgc:
 
 i3 mode="default":
   use utils.nu *; \
-  nixos-switch ai-i3 {{mode}}
+  nixos-switch twr-z790-i3 {{mode}}
 
 hypr mode="default":
   use utils.nu *; \
-  nixos-switch ai-hyprland {{mode}}
+  nixos-switch twr-z790-hyprland {{mode}}
 
 
 s-i3 mode="default":

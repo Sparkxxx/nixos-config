@@ -90,7 +90,7 @@ in {
           # https://rgoulter.com/blog/posts/programming/2022-06-10-a-visual-explanation-of-gpg-subkeys.html
           "sparkx-gpg-subkeys.priv.age" =
             {
-              file = "${mysecrets}/sparkx-gpg-subkeys-2024-05-22.priv.age.age";
+              file = "${mysecrets}/gpg/sparkx-gpg-2025-05-23-subkeys.priv.age.age";
             }
             // noaccess;
 

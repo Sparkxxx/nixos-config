@@ -36,9 +36,9 @@
         # dusk-time = "18:35-20:15";
       };
       manual = {
-        # China, Shenzhen
-        lat = "22.5"; # latitude
-        lon = "114.1"; # longitude
+        # Iasi, Romania
+        lat = "47.15"; # latitude
+        lon = "27.58"; # longitude
       };
     };
   };

@@ -3,7 +3,7 @@
   ## https://wiki.nixos.org/wiki/KDE
   modules.desktop = {
     hyprland = {
-      nvidia = false;
+      nvidia = true;
       settings = {
         # Configure your Display resolution, offset, scale and Monitors here, use `hyprctl monitors` to get the info.
         #   highres:      get the best possible resolution
@@ -14,7 +14,7 @@
         monitor = "auto,highres,auto,auto,bitdepth,10";
       };
     };
-    i3.nvidia = false;
+    i3.nvidia = true;
   };
   modules.editors.emacs = {
     enable = true;

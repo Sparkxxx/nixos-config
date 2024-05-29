@@ -8,22 +8,22 @@
   home.packages = with pkgs; [
     # creative
     blender # 3d modeling
-    # gimp      # image editing, I prefer using figma in browser instead of this one
+    gimp      # image editing, I prefer using figma in browser instead of this one
     inkscape # vector graphics
     krita # digital painting
     musescore # music notation
-    # reaper # audio production
-    # sonic-pi # music programming
+    reaper # audio production
+    sonic-pi # music programming
 
     # this app consumes a lot of storage, so do not install it currently
     # kicad     # 3d printing, eletrical engineering
 
     # fpga
-    pkgs-unstable.python311Packages.apycula # gowin fpga
-    pkgs-unstable.yosys # fpga synthesis
-    pkgs-unstable.nextpnr # fpga place and route
-    pkgs-unstable.openfpgaloader # fpga programming
-    nur-ryan4yin.packages.${pkgs.system}.gowin-eda-edu-ide # app: `gowin-env` => `gw_ide` / `gw_pack` / ...
+    #pkgs-unstable.python311Packages.apycula # gowin fpga
+    #pkgs-unstable.yosys # fpga synthesis
+    #pkgs-unstable.nextpnr # fpga place and route
+    #pkgs-unstable.openfpgaloader # fpga programming
+    #nur-ryan4yin.packages.${pkgs.system}.gowin-eda-edu-ide # app: `gowin-env` => `gw_ide` / `gw_pack` / ...
   ];
 
   programs = {

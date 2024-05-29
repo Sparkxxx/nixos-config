@@ -123,6 +123,7 @@ sudo nixos-rebuild switch --flake .#ai-hyprland
 
 # deploy via `just`(a command runner with similar syntax to make) & Justfile
 # just i3    # deploy my pc with i3 window manager
+nix-shell -p just nushell
 just hypr  # deploy my pc with hyprland compositor
 
 # or we can deploy with details

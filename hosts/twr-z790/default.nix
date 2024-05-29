@@ -17,7 +17,7 @@ in {
     #../../hardware/gpu/nvidia
 
     ./impermanence.nix
-    ./secureboot.nix
+    #./secureboot.nix
   ];
 
   networking = {

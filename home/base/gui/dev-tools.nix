@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # db related
-    dbeaver
+    dbeaver-bin
 
     mitmproxy # http/https proxy tool
     insomnia # REST client

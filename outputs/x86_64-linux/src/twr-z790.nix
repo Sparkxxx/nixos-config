@@ -28,24 +28,41 @@
     ];
   };
 
-  modules-i3 = {
-    nixos-modules =
-      [
-        {
-          modules.desktop.xorg.enable = true;
-          modules.secrets.desktop.enable = true;
-          modules.secrets.impermanence.enable = true;
-        }
-      ]
-      ++ base-modules.nixos-modules;
-    home-modules =
-      [
-        {modules.desktop.i3.enable = true;}
-      ]
-      ++ base-modules.home-modules;
-  };
+  # modules-i3 = {
+  #   nixos-modules =
+  #     [
+  #       {
+  #         modules.desktop.xorg.enable = true;
+  #         modules.secrets.desktop.enable = true;
+  #         modules.secrets.impermanence.enable = true;
+  #       }
+  #     ]
+  #     ++ base-modules.nixos-modules;
+  #   home-modules =
+  #     [
+  #       {modules.desktop.i3.enable = true;}
+  #     ]
+  #     ++ base-modules.home-modules;
+  # };
 
-  modules-hyprland = {
+  # modules-hyprland = {
+  #   nixos-modules =
+  #     [
+  #       {
+  #         modules.desktop.wayland.enable = true;
+  #         modules.secrets.desktop.enable = true;
+  #         modules.secrets.impermanence.enable = true;
+  #       }
+  #     ]
+  #     ++ base-modules.nixos-modules;
+  #   home-modules =
+  #     [
+  #       {modules.desktop.hyprland.enable = true;}
+  #     ]
+  #     ++ base-modules.home-modules;
+  # };
+
+  modules-plasma = {
     nixos-modules =
       [
         {
@@ -57,21 +74,24 @@
       ++ base-modules.nixos-modules;
     home-modules =
       [
-        {modules.desktop.hyprland.enable = true;}
+        {modules.desktop.plasma.enable = true;}
       ]
       ++ base-modules.home-modules;
   };
 in {
   nixosConfigurations = {
-    # with i3 window manager
-    "${name}-i3" = mylib.nixosSystem (modules-i3 // args);
-    # host with hyprland compositor
-    "${name}-hyprland" = mylib.nixosSystem (modules-hyprland // args);
+    # # with i3 window manager
+    # "${name}-i3" = mylib.nixosSystem (modules-i3 // args);
+    # # host with hyprland compositor
+    # "${name}-hyprland" = mylib.nixosSystem (modules-hyprland // args);
+    # host with KDE Plasma compositor
+    "${name}-plasma" = mylib.nixosSystem (modules-plasma // args);
   };
 
   # generate iso image for hosts with desktop environment
   packages = {
-    "${name}-i3" = inputs.self.nixosConfigurations."${name}-i3".config.formats.iso;
-    "${name}-hyprland" = inputs.self.nixosConfigurations."${name}-hyprland".config.formats.iso;
+    # "${name}-i3" = inputs.self.nixosConfigurations."${name}-i3".config.formats.iso;
+    # "${name}-hyprland" = inputs.self.nixosConfigurations."${name}-hyprland".config.formats.iso;
+    "${name}-plasma" = inputs.self.nixosConfigurations."${name}-plasma".config.formats.iso;
   };
 }

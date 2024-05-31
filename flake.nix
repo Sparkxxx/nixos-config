@@ -67,10 +67,10 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland/v0.38.1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprland = {
+    #   url = "github:hyprwm/Hyprland/v0.38.1";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # community wayland nixpkgs
     # nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";

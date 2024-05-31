@@ -8,7 +8,7 @@
   package = plasma.packages.${pkgs.system}.plasma;
 in {
 
-services.xserver = {
+services.xserver.plasma = {
 		# Required by SDDM.
 		enable = true;
 		displayManager.sddm = {

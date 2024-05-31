@@ -71,6 +71,9 @@ hypr mode="default":
   use utils.nu *; \
   nixos-switch twr-z790-hyprland {{mode}}
 
+plasma mode="default":
+  use utils.nu *; \
+  nixos-switch twr-z790-plasma {{mode}}
 
 s-i3 mode="default":
   use utils.nu *; \

@@ -12,6 +12,7 @@
     # "ruby"
     # "k3s-prod-1-master-1"
     "twr-z790-hyprland"
+    "twr-z790-plasma"
     "twr-z790-i3"
   ];
 in

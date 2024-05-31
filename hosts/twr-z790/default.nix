@@ -35,13 +35,6 @@ in {
 
   services.xserver.videoDrivers = ["nvidia"]; # will install nvidia-vaapi-driver by default
   #services.xserver.videoDrivers = ["i915"]; # 
-  # Enable the KDE Plasma Desktop Environment.
-      # displayManager.sddm.enable = true;
-      # desktopManager.plasma5.enable = true; 
-
-      # # Configure keymap in X11
-      # xkb.layout = "us";
-      # xkb.variant = "";
 
   hardware.nvidia = {
     # Optionally, you may need to select the appropriate driver version for your specific GPU.

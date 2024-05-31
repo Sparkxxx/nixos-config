@@ -40,6 +40,11 @@ in {
 
       services = {
         xserver.enable = false; # disable xorg server
+        displayManager.sddm.enable = true;
+        displayManager.sddm.wayland.enable = true;
+        desktopManager.plasma6.enable = true;
+
+
         # https://wiki.archlinux.org/title/Greetd
         greetd = {
           enable = true;

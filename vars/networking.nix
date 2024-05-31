@@ -48,8 +48,8 @@
     #   prefixLength = 24;
     # } ];
  
-    networking.defaultGateway = "10.111.0.1";
-    networking.nameservers = [ "10.111.0.1" ];
+    #networking.defaultGateway = "10.111.0.1";
+    #networking.nameservers = [ "10.111.0.1" ];
 
     twr-z790 = {
       # Desktop sparkx

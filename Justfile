@@ -73,7 +73,7 @@ hypr mode="default":
 
 plasma mode="default":
   use utils.nu *; \
-  nixos-switch twr-z790-plasma {{mode}}
+  nixos-switch --show-trace twr-z790-plasma {{mode}}
 
 s-i3 mode="default":
   use utils.nu *; \

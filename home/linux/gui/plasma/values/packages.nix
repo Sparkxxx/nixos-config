@@ -4,8 +4,8 @@
     # rofi # application launcher, the same as dmenu
     # polybar # status bar
     # pywal # generate color scheme from wallpaper
-    # calc
-    # networkmanager_dmenu # network manager
+    calc
+    networkmanager_dmenu # network manager
 
     # dunst # notification daemon
     # i3lock # default i3 screen locker

@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     android-tools
-    vscode
     notepad-next
+    #vscode
   ];
 }

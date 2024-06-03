@@ -42,6 +42,12 @@
     flameshot
     ventoy # cli multi-boot usb creator
 
+    ## mine
+    intel-compute-runtime
+    clinfo
+    aha
+    wayland-utils
+
   ];
 
   # GitHub CLI tool

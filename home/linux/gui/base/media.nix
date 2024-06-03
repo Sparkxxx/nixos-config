@@ -21,10 +21,6 @@
     vdpauinfo
     vulkan-tools
     glxinfo
-
-    ## mine
-    intel-compute-runtime
-    clinfo
   ];
 
   # https://github.com/catppuccin/cava

@@ -12,7 +12,7 @@
     inkscape # vector graphics
     krita # digital painting
     musescore # music notation
-    reaper # audio production
+    #reaper # audio production
     sonic-pi # music programming
 
     # this app consumes a lot of storage, so do not install it currently

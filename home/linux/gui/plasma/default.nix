@@ -2,14 +2,14 @@
   pkgs,
   config,
   lib,
-  anyrun,
+  #anyrun,
   ...
 } @ args:
 with lib; let
   cfg = config.modules.desktop.plasma;
 in {
   imports = [
-    anyrun.homeManagerModules.default
+    # anyrun.homeManagerModules.default
     ./options
   ];
 

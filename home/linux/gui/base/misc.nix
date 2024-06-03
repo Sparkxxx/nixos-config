@@ -5,6 +5,9 @@
 }: {
   home.packages = with pkgs; [
     # GUI apps
+    firefox
+ 
+ 
     # e-book viewer(.epub/.mobi/...)
     # do not support .pdf
     foliate

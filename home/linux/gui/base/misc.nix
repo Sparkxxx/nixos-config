@@ -33,6 +33,7 @@
     # remote desktop(rdp connect)
     remmina
     freerdp # required by remmina
+    anydesk
 
     # misc
     flameshot

@@ -11,9 +11,14 @@
     brave
     ungoogled-chromium
  
+    # Video players
+    smplayer
+    vlc
+    # kaffeine
+    # mpv and mpv-mpris
+    
     # e-book viewer(.epub/.mobi/...)
-    # do not support .pdf
-    foliate
+    foliate # do not support .pdf
 
     # instant messaging
     telegram-desktop

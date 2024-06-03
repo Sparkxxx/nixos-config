@@ -13,7 +13,7 @@ in {
     ./base
     ../base.nix
 
-    #./desktop
+    ./desktop
   ];
 
   options.modules.desktop = {

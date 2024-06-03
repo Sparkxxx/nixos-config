@@ -24,6 +24,7 @@
 
     ## mine
     intel-compute-runtime
+    clinfo
   ];
 
   # https://github.com/catppuccin/cava

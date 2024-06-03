@@ -17,8 +17,8 @@
     smplayer
     vlc
     # kaffeine
-    mpv 
-    mpv-mpris
+    mpd 
+    mpd-mpris
     
     # e-book viewer(.epub/.mobi/...)
     foliate # do not support .pdf

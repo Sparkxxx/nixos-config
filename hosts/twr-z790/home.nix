@@ -31,6 +31,7 @@
       };
     };
   };
+  
   modules.editors.emacs = {
     enable = true;
   };

@@ -12,7 +12,7 @@
     # instant messaging
     telegram-desktop
     discord
-    pkgs-unstable.qq # https://github.com/NixOS/nixpkgs/tree/master/pkgs/applications/networking/instant-messengers/qq
+    #pkgs-unstable.qq # https://github.com/NixOS/nixpkgs/tree/master/pkgs/applications/networking/instant-messengers/qq
 
     # remote desktop(rdp connect)
     remmina

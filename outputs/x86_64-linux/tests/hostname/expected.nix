@@ -3,10 +3,10 @@
   outputs,
 }: let
   specialExpected = {
-    "ai-hyprland" = "ai";
-    "ai-i3" = "ai";
-    "shoukei-hyprland" = "shoukei";
-    "shoukei-i3" = "shoukei";
+    # "ai-hyprland" = "ai";
+    # "ai-i3" = "ai";
+    # "shoukei-hyprland" = "shoukei";
+    # "shoukei-i3" = "shoukei";
 
     "twr-z790-hyprland" = "twr-z790";
     "twr-z790-i3" = "twr-z790";

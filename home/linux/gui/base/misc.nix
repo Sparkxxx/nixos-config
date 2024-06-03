@@ -4,6 +4,8 @@
   ...
 }: {
   home.packages = with pkgs; [
+    g810-led
+
     # GUI apps
     
     # Browsers
@@ -15,7 +17,8 @@
     smplayer
     vlc
     # kaffeine
-    # mpv and mpv-mpris
+    mpv 
+    mpv-mpris
     
     # e-book viewer(.epub/.mobi/...)
     foliate # do not support .pdf

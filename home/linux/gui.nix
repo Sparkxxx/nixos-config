@@ -6,6 +6,6 @@
     ../base/home.nix
 
     ./base
-    ./gui
+    #./gui
   ];
 }

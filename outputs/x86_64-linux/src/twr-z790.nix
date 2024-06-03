@@ -74,7 +74,7 @@
       ++ base-modules.nixos-modules;
     home-modules =
       [
-        #{modules.desktop.hyprland.enable = true;}
+        {modules.desktop.plasma.enable = true;}
       ]
       ++ base-modules.home-modules;
   };

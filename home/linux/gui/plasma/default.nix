@@ -37,11 +37,11 @@ in {
   };
 
   config = mkIf cfg.enable (
-    mkMerge ([
-        {
-          wayland.windowManager.plasma.settings = cfg.settings;
-        }
-      ]
-      ++ (import ./values args))
+    # mkMerge ([
+    #     {
+    #       wayland.windowManager.plasma.settings = cfg.settings;
+    #     }
+    #   ]
+    #   ++ (import ./values args))
   );
 }

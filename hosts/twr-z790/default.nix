@@ -16,6 +16,9 @@ in {
     ../../hardware/gpu/intel
     #../../hardware/gpu/nvidia
 
+    # RGB devices
+    ../../hardware/rgb
+
     ./impermanence.nix
     #./secureboot.nix
   ];

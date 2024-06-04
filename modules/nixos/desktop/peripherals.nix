@@ -5,6 +5,13 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     pulseaudio # provides `pactl`, which is required by some apps(e.g. sonic-pi)
+
+    # Linux led controller for Logitech G213, G410, G413, G512, G513, G610, G810, G815, G910 and GPRO Keyboards.
+    # https://github.com/MatMoul/g810-led
+    g810-led
+
+    # https://openrgb.org/
+    openrgb-with-all-plugins # Open source RGB lighting control
   ];
 
   # PipeWire is a new low-level multimedia framework.

@@ -28,6 +28,7 @@
     # ncmpcpp # a mpd client with a UI
     # networkmanagerapplet # provide GUI app: nm-connection-editor
 
+    # https://github.com/NixOS/nixpkgs/blob/nixos-23.11/nixos/modules/services/x11/desktop-managers/plasma5.nix#L275-L284
     kdePackages.kdenlive # Video editor
     glaxnimate # Simple vector animation program.- required by kdenlive
     kdePackages.spectacle # Screen recorder
@@ -41,7 +42,6 @@
     kdePackages.kmail-account-wizard # Application which assists you with the configuration of accounts in KMail
     kdePackages.kdepim-addons # Add-ons for KDE PIM apps (KMail, KAddressBook etc.)
     kdePackages.kmailtransport # Library, KCM and KDED module to manage mail transport
-
 
   ];
 }

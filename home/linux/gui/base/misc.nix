@@ -4,8 +4,6 @@
   ...
 }: {
   home.packages = with pkgs; [
-    g810-led
-
     # GUI apps
     
     # Browsers

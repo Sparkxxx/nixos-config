@@ -74,6 +74,10 @@
           mode = "0700";
         }
 
+        # keep all .config since plasma has files in it
+        # it should be more locked down - TODO identify files for plasma
+        ".config"
+
         # misc
         ".config/pulse"
         ".pki"

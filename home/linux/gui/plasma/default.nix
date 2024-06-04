@@ -13,35 +13,42 @@ in {
     ./options
   ];
 
+  # options.modules.desktop.plasma = {
+  #   enable = mkEnableOption "plasma compositor";
+  #   settings = lib.mkOption {
+  #     type = with lib.types; let
+  #       valueType =
+  #         nullOr (oneOf [
+  #           bool
+  #           int
+  #           float
+  #           str
+  #           path
+  #           (attrsOf valueType)
+  #           (listOf valueType)
+  #         ])
+  #         // {
+  #           description = "plasma configuration value";
+  #         };
+  #     in
+  #       valueType;
+  #     default = {};
+  #   };
+  # };
+
+  # config = mkIf cfg.enable (
+  #   mkMerge ([
+  #       {
+  #         wayland.windowManager.plasma.settings = cfg.settings;
+  #       }
+  #     ]
+  #     ++ (import ./values args))
+  # );
   options.modules.desktop.plasma = {
-    enable = mkEnableOption "plasma compositor";
-    settings = lib.mkOption {
-      type = with lib.types; let
-        valueType =
-          nullOr (oneOf [
-            bool
-            int
-            float
-            str
-            path
-            (attrsOf valueType)
-            (listOf valueType)
-          ])
-          // {
-            description = "plasma configuration value";
-          };
-      in
-        valueType;
-      default = {};
-    };
+    enable = mkEnableOption "plasma window manager";
   };
 
   config = mkIf cfg.enable (
-    mkMerge ([
-        {
-          wayland.windowManager.plasma.settings = cfg.settings;
-        }
-      ]
-      ++ (import ./values args))
+    mkMerge (import ./values args)
   );
 }

@@ -42,12 +42,12 @@
 
     # Could not detect a default hypervisor. Make sure the appropriate QEMU/KVM virtualization packages are installed to manage virtualization on this host.
     # A virtualization connection can be manually added via File->Add Connection or like this, check the page https://nixos.wiki/wiki/Virt-manager 
-    dconf.settings = {
-      "org/virt-manager/virt-manager/connections" = {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
-      };
-    };
+    # dconf.settings = {
+    #   "org/virt-manager/virt-manager/connections" = {
+    #     autoconnect = ["qemu:///system"];
+    #     uris = ["qemu:///system"];
+    #   };
+    # };
 
     # thunar file manager(part of xfce) related options
     # thunar = {

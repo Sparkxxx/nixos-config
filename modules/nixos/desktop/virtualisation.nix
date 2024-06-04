@@ -37,7 +37,7 @@
       enable = true;
       # hanging this option to false may cause file permission issues for existing guests.
       # To fix these, manually change ownership of affected files in /var/lib/libvirt/qemu to qemu-libvirtd.
-      #qemu.runAsRoot = true; ## ??
+      qemu.runAsRoot = true; ## ??
     };
     
     waydroid.enable = true;

@@ -38,11 +38,13 @@ in {
         ];
       };
 
+      # https://nixos.wiki/wiki/KDE
       services = {
-        xserver.enable = true; # disable xorg server
-        xserver.displayManager.defaultSession = "plasma";
+        #It's possible to launch sddm in Wayland too to try to avoid running an X server. 
+        xserver.enable = false; 
+        displayManager.defaultSession = "plasma";
         displayManager.sddm.enable = true;
-        #displayManager.sddm.wayland.enable = true;
+        displayManager.sddm.wayland.enable = true;
         desktopManager.plasma6.enable = true;
         
       };

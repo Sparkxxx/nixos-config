@@ -39,10 +39,12 @@ in {
       };
 
       services = {
-        xserver.enable = false; # disable xorg server
+        xserver.enable = true; # disable xorg server
+        xserver.displayManager.defaultSession = "plasma";
         displayManager.sddm.enable = true;
-        displayManager.sddm.wayland.enable = true;
+        #displayManager.sddm.wayland.enable = true;
         desktopManager.plasma6.enable = true;
+        
       };
     })
   ];

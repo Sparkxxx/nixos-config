@@ -1,6 +1,6 @@
 {
   pkgs,
-  nur-ryan4yin,
+  #nur-ryan4yin,
   ...
 }: {
   # refer to https://codeberg.org/dnkl/foot/src/branch/master/foot.ini
@@ -94,7 +94,7 @@
     # };
 
     kdePackages.kdenlive # Video editor
-    glaxnimate # Simple vector animation program.- required by kdenlive
+    kdePackages.glaxnimate # Simple vector animation program.- required by kdenlive
     kdePackages.spectacle # Screen recorder
     kdePackages.zanshin # Getting Things Done application
     kdePackages.yakuake # Drop-down terminal emulator based on Konsole technologies

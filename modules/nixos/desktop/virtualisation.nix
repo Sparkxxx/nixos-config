@@ -37,20 +37,11 @@
       enable = true;
       # hanging this option to false may cause file permission issues for existing guests.
       # To fix these, manually change ownership of affected files in /var/lib/libvirt/qemu to qemu-libvirtd.
-      #qemu.runAsRoot = true;
+      #qemu.runAsRoot = true; ## ??
     };
     
     waydroid.enable = true;
     lxd.enable = true;
-  };
-  
-  # Could not detect a default hypervisor. Make sure the appropriate QEMU/KVM virtualization packages are installed to manage virtualization on this host.
-  # A virtualization connection can be manually added via File->Add Connection or like this, check the page https://nixos.wiki/wiki/Virt-manager 
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
-    };
   };
 
   environment.systemPackages = with pkgs; [

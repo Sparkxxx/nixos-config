@@ -9,7 +9,7 @@ let
   cfg = config.services.hardware.openrgb;
 in {
   options.services.hardware.openrgb = {
-    enable = mkEnableOption (lib.mdDoc "OpenRGB server");
+    #enable = mkEnableOption (lib.mdDoc "OpenRGB server");
 
     package = mkOption {
       type = types.package;

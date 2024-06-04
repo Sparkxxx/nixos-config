@@ -41,7 +41,7 @@ in {
       # https://nixos.wiki/wiki/KDE
       services = {
         #It's possible to launch sddm in Wayland too to try to avoid running an X server. 
-        xserver.enable = false; 
+        xserver.enable = false; # running in wayland not xserver
         displayManager.defaultSession = "plasma";
         displayManager.sddm.enable = true;
         displayManager.sddm.wayland.enable = true;

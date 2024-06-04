@@ -78,6 +78,44 @@
         # it should be more locked down - TODO identify files for plasma
         ".config"
 
+        # [sparkx@twr-z790:~/nixos-config]$ ls -al ../.config/
+        # total 0
+        # drwxr-xr-x  1 sparkx users 154 May  8 09:50  .
+        # drwx------ 35 sparkx users 760 Jun  4 17:49  ..
+        # drwxr-xr-x  1 sparkx users   8 May  8 09:50  Code
+        # drwxr-xr-x  1 sparkx users   8 May  8 09:50 'Code - Insiders'
+        # drwxr-xr-x  1 sparkx users   0 May  8 09:50  emacs
+        # drwxr-xr-x  1 sparkx users   0 May  8 09:50  freerdp
+        # drwxr-xr-x  1 sparkx users   0 May  8 09:50  github-copilot
+        # drwxr-xr-x  1 sparkx users   0 May  8 09:50  google-chrome
+        # drwxr-xr-x  1 sparkx users  22 May 23 08:45  nushell
+        # drwxr-xr-x  1 sparkx users  12 Jun  3 11:55  pulse
+        # drwxr-xr-x  1 sparkx users   0 May  8 09:50  remmina
+
+        # [sparkx@twr-z790:~/nixos-config]$ ls -al ../.config/
+        # total 36
+        # drwxr-xr-x  1 sparkx users  368 Jun  4 18:01  .
+        # drwx------ 35 sparkx users  760 Jun  4 17:49  ..
+        # drwxr-xr-x  1 sparkx users  606 Jun  4 18:04  Code
+        # drwxr-xr-x  1 sparkx users    8 May  8 09:50 'Code - Insiders'
+        # drwx------  1 sparkx users    8 Jun  4 17:59  dconf
+        # drwxr-xr-x  1 sparkx users    0 May  8 09:50  emacs
+        # drwxr-xr-x  1 sparkx users    0 May  8 09:50  freerdp
+        # drwxr-xr-x  1 sparkx users    0 May  8 09:50  github-copilot
+        # drwxr-xr-x  1 sparkx users    0 May  8 09:50  google-chrome
+        # drwx------  1 sparkx users    0 Jun  4 17:59  gtk-3.0
+        # -rw-r--r--  1 sparkx users   51 Jun  4 17:58  gtkrc
+        # -rw-r--r--  1 sparkx users   86 Jun  4 17:58  gtkrc-2.0
+        # drwxr-xr-x  1 sparkx users  130 Jun  4 17:58  kdedefaults
+        # -rw-------  1 sparkx users 3413 Jun  4 17:58  kdeglobals
+        # -rw-------  1 sparkx users   38 Jun  4 17:58  konsolerc
+        # -rw-r--r--  1 sparkx users 3429 Jun  4 18:01  kwinoutputconfig.json
+        # drwxr-xr-x  1 sparkx users   22 May 23 08:45  nushell
+        # drwxr-xr-x  1 sparkx users   12 Jun  3 11:55  pulse
+        # drwxr-xr-x  1 sparkx users    0 May  8 09:50  remmina
+        # -rw-------  1 sparkx users   55 Jun  4 17:58  systemsettingsrc
+        # -rw-r--r--  1 sparkx users 1081 Jun  4 17:58  Trolltech.conf
+
         # misc
         ".config/pulse"
         ".pki"

@@ -36,12 +36,12 @@ in {
     };
   };
 
-  # config = mkIf cfg.enable (
-  #   # mkMerge ([
-  #   #     {
-  #   #       wayland.windowManager.plasma.settings = cfg.settings;
-  #   #     }
-  #   #   ]
-  #   #   ++ (import ./values args))
-  # );
+  config = mkIf cfg.enable (
+    mkMerge ([
+        {
+          wayland.windowManager.plasma.settings = cfg.settings;
+        }
+      ]
+      ++ (import ./values args))
+  );
 }

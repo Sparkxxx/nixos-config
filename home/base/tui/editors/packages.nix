@@ -18,8 +18,9 @@
     llvmPackages.clang-unwrapped
     lldb
 
-    #-- python
-    nodePackages.pyright # python language server
+    #-- python language server
+    #nodePackages.pyright
+
     (python311.withPackages (
       ps:
         with ps; [
@@ -33,6 +34,18 @@
           requests
           pyquery
           pyyaml
+
+          #AI related tools - shell_gpt
+          huggingface-hub
+          shell-gpt
+          litellm
+          fastapi
+          backoff
+          apscheduler
+          jwt
+          python-multipart
+          gunicorn
+          uvicorn
 
           ## emacs's lsp-bridge dependenciesge
           epc

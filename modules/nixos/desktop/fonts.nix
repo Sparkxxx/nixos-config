@@ -6,6 +6,7 @@
     fontDir.enable = true;
 
     packages = with pkgs; [
+      #source-code-pro #used by kmscon
       # icon fonts
       material-design-icons
       font-awesome
@@ -51,12 +52,18 @@
     };
   };
 
+  # journalctl -b |grep systemd-vconsole-setup
+  # systemctl status systemd-vconsole-setup.service
+  # journalctl --user-unit systemd-vconsole-setup
+  systemd.services."systemd-vconsole-setup".environment.SYSTEMD_LOG_LEVEL = "debug";
+
   # https://wiki.archlinux.org/title/KMSCON
   services.kmscon = {
     # Use kmscon as the virtual console instead of gettys.
     # kmscon is a kms/dri-based userspace virtual terminal implementation.
     # It supports a richer feature set than the standard linux console VT,
     # including full unicode support, and when the video card supports drm should be much faster.
+    # Font source-code-pro #used by kmscon needs to be added to systemPackages
     enable = true;
     fonts = [
       {

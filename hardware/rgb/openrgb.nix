@@ -1,55 +1,24 @@
 # https://discourse.nixos.org/t/guide-to-setup-openrgb-on-nixos/9093
 # https://www.youtube.com/watch?v=bkDYmvKINm8
+{pkgs, ...}: {
+  #============================= Audio(PipeWire) =======================
 
-{ pkgs, lib, config, ... }:
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    #i2c-tools # Set of I2C tools for Linux
 
-with lib;
+    # Linux led controller for Logitech G213, G410, G413, G512, G513, G610, G810, G815, G910 and GPRO Keyboards.
+    # https://github.com/MatMoul/g810-led
+    # g810-led
 
-let
-  cfg = config.services.hardware.openrgb;
-in {
-  options.services.hardware.openrgb = {
-    #enable = mkEnableOption (lib.mdDoc "OpenRGB server");
+    # https://openrgb.org/
+    # https://discourse.nixos.org/t/guide-to-setup-openrgb-on-nixos/9093
+    openrgb-with-all-plugins # Open source RGB lighting control - no need to install it services.hardware.openrgb.enable = true; takes care of it
+    # openrgb-plugin-effects
+    # openrgb-plugin-hardwaresync
+  ];
 
-    package = mkOption {
-      type = types.package;
-      default = pkgs.openrgb;
-      defaultText = literalMD "pkgs.openrgb";
-      description = lib.mdDoc "Set version of openrgb package to use.";
-    };
-
-    motherboard = mkOption {
-      type = types.nullOr (types.enum [ "amd" "intel" ]);
-      default = null;
-      description = lib.mdDoc "CPU family of motherboard. Allows for addition motherboard i2c support.";
-    };
-
-    server.port = mkOption {
-      type = types.port;
-      default = 6742;
-      description = lib.mdDoc "Set server port of openrgb.";
-    };
-
-  };
-
-  config = mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
-    services.udev.packages = [ cfg.package ];
-
-    boot.kernelModules = [ "i2c-dev" ]
-     ++ lib.optionals (cfg.motherboard == "amd") [ "i2c-piix" ]
-     ++ lib.optionals (cfg.motherboard == "intel") [ "i2c-i801" ];
-
-    systemd.services.openrgb = {
-      description = "OpenRGB server daemon";
-      wantedBy = [ "multi-user.target" ];
-
-      serviceConfig = {
-        ExecStart = "${cfg.package}/bin/openrgb --server --server-port ${toString cfg.server.port}";
-        Restart = "always";
-      };
-    };
-  };
-
-  meta.maintainers = with lib.maintainers; [ jonringer ];
+  # https://nixos.wiki/wiki/OpenRGB
+  services.hardware.openrgb.enable = true;
 }

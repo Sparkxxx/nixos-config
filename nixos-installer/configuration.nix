@@ -13,10 +13,6 @@
     curl
     nix-output-monitor
   ];
-  networking = {
-    # configures the network interface(include wireless) via `nmcli` & `nmtui`
-    networkmanager.enable = true;
-    defaultGateway = "10.111.0.1";
-  };
+
   system.stateVersion = "23.11";
 }

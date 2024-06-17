@@ -26,7 +26,7 @@ up:
   nix flake update
 
 # Update specific input
-# Usage: just upp nixpkgs
+# Usage: just upp nixpkgs OR just upp mysecrets
 upp input:
   nix flake lock --update-input {{input}}
 
@@ -112,7 +112,7 @@ fe mode="default": darwin-set-proxy
 # Reload yabai and skhd(macOS)
 yabai-reload:
   launchctl kickstart -k "gui/502/org.nixos.yabai";
-  launchctl kickstart -k "gui/502/org.nixos.skhd"; 
+  launchctl kickstart -k "gui/502/org.nixos.skhd";
 
 ############################################################################
 #

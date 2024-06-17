@@ -74,8 +74,7 @@
           mode = "0700";
         }
 
-        # keep all .config since plasma has files in it
-        # it should be more locked down - TODO identify files for plasma
+        # keep all .config since plasma has files in it, should be more locked down - TODO identify files for plasma
         ".config"
 
         # [sparkx@twr-z790:~/nixos-config]$ ls -al ../.config/
@@ -115,6 +114,12 @@
         # drwxr-xr-x  1 sparkx users    0 May  8 09:50  remmina
         # -rw-------  1 sparkx users   55 Jun  4 17:58  systemsettingsrc
         # -rw-r--r--  1 sparkx users 1081 Jun  4 17:58  Trolltech.conf
+
+        #lm studio - to determine if all should be backed up or just the models folder !!!
+        ".cache/lm-studio"
+
+        # obsidian.md - note taking app
+        ".obsidian"
 
         # misc
         ".config/pulse"

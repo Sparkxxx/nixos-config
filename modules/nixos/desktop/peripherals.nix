@@ -19,9 +19,20 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    jack.enable = true;
+    #jack.enable = true;
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
     wireplumber.enable = true;
   };
+
+  services.jack = {
+    jackd.enable = false;
+    alsa.enable = false;
+    loopback = {
+      enable = true;
+    };
+  };
+
   # rtkit is optional but recommended
   security.rtkit.enable = true;
   # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
@@ -66,7 +77,7 @@
       enable = true;
       keyboards.default.settings = {
         main = {
-          # Very anoying - overloads the capslock key to function as both escape (when tapped) and control (when held)
+          # Very annoying - overloads the capslock key to function as both escape (when tapped) and control (when held)
           # capslock = "overload(control, esc)";
           # esc = "capslock";
         };

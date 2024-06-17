@@ -18,6 +18,7 @@
   # auto upgrade nix to the unstable version
   # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/tools/package-management/nix/default.nix#L284
   #nix.package = pkgs.nixVersions.unstable; # unstable has been removed use nixVersions.git for bleeding edge or latest
+  #nix.package = pkgs.nixVersions.latest; # unstable has been removed use nixVersions.git for bleeding edge or latest
   nix.package = pkgs.nixVersions.latest; # unstable has been removed use nixVersions.git for bleeding edge or latest
 
   environment.systemPackages = with pkgs; [
@@ -30,6 +31,7 @@
     zstd
     unzipNLS
     p7zip
+    nushell # my custom shell
 
     # Text Processing
     # Docs: https://github.com/learnbyexample/Command-line-text-processing
@@ -42,6 +44,7 @@
     mtr # A network diagnostic tool
     iperf3
     dnsutils # `dig` + `nslookup`
+    nssmdns #needed by AVAHI as nssmdns4 in ./networking.nix
     ldns # replacement of `dig`, it provide the command `drill`
     pciutils
     usbutils
@@ -102,12 +105,16 @@
       # "https://mirrors.ustc.edu.cn/nix-channels/store"
 
       "https://nix-community.cachix.org"
+      "https://hydra.iohk.io"
+      "https://deemp.cachix.org"
       # my own cache server
       # "https://ryan4yin.cachix.org"
     ];
 
     trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+      "deemp.cachix.org-1:9shDxyR2ANqEPQEEYDL/xIOnoPwxHot21L5fiZnFL18="
       # "ryan4yin.cachix.org-1:Gbk27ZU5AYpGS9i3ssoLlwdvMIh0NxG0w8it/cv9kbU="
     ];
     builders-use-substitutes = true;

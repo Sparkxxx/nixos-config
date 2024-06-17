@@ -4,6 +4,20 @@
   ...
 }: {
   home.packages = with pkgs; [
+    # aws
+    awscli2
+    ssm-session-manager-plugin # Amazon SSM Session Manager Plugin
+    aws-iam-authenticator
+    eksctl
+
+    # aliyun
+    aliyun-cli
+    # cloud tools that nix do not have cache for.
+
+    #IaC
+    opentofu
+    terraform
+    terraformer # generate terraform configs from existing cloud resources
     # infrastructure as code
     # pulumi
     # pulumictl
@@ -16,17 +30,7 @@
     # pulumiPackages.pulumi-language-python
     # pulumiPackages.pulumi-language-nodejs
 
-    # aws
-    awscli2
-    ssm-session-manager-plugin # Amazon SSM Session Manager Plugin
-    aws-iam-authenticator
-    eksctl
-
-    # aliyun
-    aliyun-cli
-    # cloud tools that nix do not have cache for.
-    terraform
-    terraformer # generate terraform configs from existing cloud resources
+    # Boot Image generators
     packer # machine image builder
   ];
 }

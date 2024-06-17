@@ -1,5 +1,4 @@
 {
-  
   ## https://wiki.nixos.org/wiki/KDE
   ## these are defined in outputs/x86/src/hostname
   modules.desktop = {
@@ -31,9 +30,9 @@
       };
     };
   };
-  
+
   modules.editors.emacs = {
-    enable = true;
+    enable = false;
   };
 
   programs.ssh = {

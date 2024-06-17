@@ -1,0 +1,48 @@
+# https://github.com/NixOS/nixpkgs/blob/e2dd4e18cc1c7314e24154331bae07df76eb582f/nixos/modules/services/desktop-managers/plasma6.nix
+# https://mynixos.com/nixpkgs/options/services.desktopManager.plasma6
+# https://discourse.nixos.org/t/podman-docker-in-nixos-container-ideally-in-unprivileged-one/22909/13
+# https://docs.docker.com/config/containers/resource_constraints/
+#   docker run -it --rm --gpus all ubuntu nvidia-smi
+#   docker run -it --rm --gpus '"device=000:01:00.0"' ubuntu nvidia-smi
+#   docker run -it --rm --gpus '"device=0,2"' ubuntu nvidia-smi ???
+# https://stackoverflow.com/questions/25185405/using-gpu-from-a-docker-container
+# docker run -ti --device /dev/nvidia0:/dev/nvidia0 --device /dev/nvidiactl:/dev/nvidiactl --device /dev/nvidia-uvm:/dev/nvidia-uvm llamaedge/ubuntu-cuda /bin/bash
+# https://llamaedge.com/ https://hub.docker.com/u/llamaedge
+# https://discourse.nixos.org/t/simulating-a-kubernetes-cluster-with-containers/26297
+# https://stackoverflow.com/questions/78416745/how-to-properly-setup-tensorflow-with-gpu-acceleration-on-nixos
+# https://github.com/pjones/plasma-manager/blob/trunk/modules/workspace.nix
+{
+  pkgs,
+  lib,
+  plasma,
+  #nur-ryan4yin,
+  ...
+}: let
+  package = plasma.packages.${pkgs.system}.plasma;
+in {
+  # NOTE:
+  # We have to enable hyprland/i3's systemd user service in home-manager,
+  # so that gammastep/wallpaper-switcher's user service can be start correctly!
+  # they are all depending on hyprland/i3's user graphical-session
+  wayland.windowManager.plasma = {
+    inherit package;
+    enable = true;
+    settings = {
+      # source = "${nur-ryan4yin.packages.${pkgs.system}.catppuccin-hyprland}/themes/mocha.conf";
+      env = [
+        "NIXOS_OZONE_WL,1" # for any ozone-based browser & electron apps to run on wayland
+        "MOZ_ENABLE_WAYLAND,1" # for firefox to run on wayland
+        "MOZ_WEBRENDER,1"
+        # misc
+        "_JAVA_AWT_WM_NONREPARENTING,1"
+        # "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        # "QT_QPA_PLATFORM,wayland"
+        "SDL_VIDEODRIVER,wayland"
+        "GDK_BACKEND,wayland"
+      ];
+    };
+    # extraConfig = builtins.readFile ../conf/hyprland.conf;
+    # gammastep/wallpaper-switcher need this to be enabled.
+    systemd.enable = true;
+  };
+}

@@ -25,7 +25,7 @@
 
     includes = [
       {
-        # use diffrent email & name for work
+        # use different email & name for work
         path = "~/work/.gitconfig";
         condition = "gitdir:~/work/";
       }
@@ -43,9 +43,9 @@
         };
 
         "ssh://git@github.com" = {
-            insteadOf = "github-sparkx";
-          };
-          
+          insteadOf = "github-sparkxxx";
+        };
+
         # "ssh://git@gitlab.com/" = {
         #   insteadOf = "https://gitlab.com/";
         # };

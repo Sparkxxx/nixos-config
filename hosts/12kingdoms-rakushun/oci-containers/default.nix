@@ -24,5 +24,9 @@
     oci-containers = {
       backend = "podman";
     };
+
+    containers = {
+      open-webui = import ./containers/open-webui.nix;
+    };
   };
 }

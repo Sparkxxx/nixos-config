@@ -1,5 +1,30 @@
-{mysecrets, ...}: {
-  home.file.".ssh/romantic.pub".source = "${mysecrets}/public/romantic.pub";
+{
+  mysecrets,
+  config,
+  ...
+}: {
+  ## These files will be created in ~/.ssh folder
+
+  # ${mysecrets} links to where the .age files are located
+  #home.file.".ssh/github-sparkxxx-id-ed25519.pub".source = "${mysecrets}/ssh/pub/github-sparkxxx-id-ed25519.pub.age";
+
+  # Keys needed to connect to private github.com repos
+  home.file.".ssh/github-sparkxxx-id-ed25519.pub".source = config.lib.file.mkOutOfStoreSymlink "/etc/agenix/ssh/pub/github-sparkxxx-id-ed25519.pub";
+  home.file.".ssh/github-sparkxxx-id-ed25519.priv".source = config.lib.file.mkOutOfStoreSymlink "/etc/agenix/ssh/priv/github-sparkxxx-id-ed25519.priv";
+
+  # Keys needed to connect to private gitlab-ops repos
+  # home.file.".ssh/gitlab-ops-sparkx-id-ed25519.pub".source = "config.lib.file.mkOutOfStoreSymlink "/etc/ssh/pub/gitlab-ops-sparkx-id-ed25519.pub";
+  # home.file.".ssh/gitlab-ops-sparkx-id-ed25519.priv".source = config.lib.file.mkOutOfStoreSymlink "/etc/ssh/priv/gitlab-ops-sparkx-id-ed25519.priv";
+
+  # Keys needed to connect to ops servers
+  home.file.".ssh/ops-id-ed25519.pub".source = config.lib.file.mkOutOfStoreSymlink "/etc/agenix/ssh/pub/ops-id-ed25519.pub";
+  home.file.".ssh/ops-id-ed25519.priv".source = config.lib.file.mkOutOfStoreSymlink "/etc/agenix/ssh/priv/ops-id-ed25519.priv";
+
+  # Keys needed to connect to ops & infra appliances - pki + optional (pass that is age-encrypted [*.age.age])
+  # home.file.".ssh/ops-main-gw-id-ed25519.pub".source = config.lib.file.mkOutOfStoreSymlink "/etc/ssh/pub/ops-main-gw-id-ed25519.pub";
+  # home.file.".ssh/ops-main-gw-id-ed25519.priv".source = config.lib.file.mkOutOfStoreSymlink "/etc/ssh/priv/ops-main-gw-id-ed25519.priv";
+  # home.file.".ssh/ops-opnsfw-id-ed25519.pub".source = config.lib.file.mkOutOfStoreSymlink "/etc/ssh/pub/ops-opnsfw-id-ed25519.pub";
+  # home.file.".ssh/ops-opnsfw-id-ed25519.priv".source = config.lib.file.mkOutOfStoreSymlink "/etc/ssh/priv/ops-opnsfw-id-ed25519.priv";
 
   programs.ssh = {
     enable = true;
@@ -12,30 +37,100 @@
     # Format in details:
     #   https://www.ssh.com/academy/ssh/config
     extraConfig = ''
+
+      ## !!! This file is imutable - you can only edit it through nixos-config/home/base/tui/ssh.nix !!!
+
       # a private key that is used during authentication will be added to ssh-agent if it is running
+      # lets you avoid reentering the key passphrase every time
       AddKeysToAgent yes
 
-      Host 192.168.*
+      Host github-sparkxxx
+        # git clone git@github-sparkxxx:Sparkxxx/<REPO>.git .
+        # test connection with `ssh git@github-sparkxxx`
+        Hostname github.com
+          IdentityFile ~/.ssh/github-sparkxxx-id-ed25519.priv
+          # Specifies that ssh should only use the identity file explicitly configured above
+          # required to prevent sending default identity files first.
+          IdentitiesOnly yes
+          #AddKeysToAgent yes
+
+      Host gitlab-ops
+        # git clone git@gitlab-ops:<USERNAME>/<REPO>.git
+        # test connection with `ssh git@gitlab-ops`
+        Hostname github.com
+          IdentityFile ~/.ssh/gitlab-ops-sparkx-id-ed25519.priv
+          # Specifies that ssh should only use the identity file explicitly configured above
+          # required to prevent sending default identity files first.
+          IdentitiesOnly yes
+          #AddKeysToAgent yes
+
+
+      Host 10.220.0.*
         # allow to securely use local SSH agent to authenticate on the remote machine.
         # It has the same effect as adding cli option `ssh -A user@host`
         ForwardAgent yes
-        # romantic holds my homelab~
-        IdentityFile /etc/agenix/ssh-key-romantic
+        # ops holds my infra machines
+        IdentityFile ~/.ssh/ops-id-ed25519.priv
         # Specifies that ssh should only use the identity file explicitly configured above
         # required to prevent sending default identity files first.
         IdentitiesOnly yes
 
-      Host gtr5
-        HostName 192.168.5.172
+      Host minio
+        HostName 10.220.0.2
         Port 22
+        ForwardAgent yes
+        IdentityFile ~/.ssh/ops-id-ed25519.priv
+        IdentitiesOnly yes
 
-      Host um560
-        HostName 192.168.5.173
+      Host gitlab
+        HostName 10.220.0.3
         Port 22
+        ForwardAgent yes
+        IdentityFile ~/.ssh/ops-id-ed25519.priv
+        IdentitiesOnly yes
 
-      Host s500plus
-        HostName 192.168.5.174
+      Host gitlab-runners-atlantis
+        HostName 10.220.0.4
         Port 22
+        ForwardAgent yes
+        IdentityFile ~/.ssh/ops-id-ed25519.priv
+        IdentitiesOnly yes
+
+      Host dockers
+        HostName 10.220.0.5
+        Port 22
+        ForwardAgent yes
+        IdentityFile ~/.ssh/ops-id-ed25519.priv
+        IdentitiesOnly yes
+
+      Host nexus
+        HostName 10.220.0.6
+        Port 22
+        ForwardAgent yes
+        IdentityFile ~/.ssh/ops-id-ed25519.priv
+        IdentitiesOnly yes
+
+      Host yuno
+        HostName 10.220.0.10
+        Port 22
+        ForwardAgent yes
+        IdentityFile ~/.ssh/ops-id-ed25519.priv
+        IdentitiesOnly yes
+
+      Host finops
+        HostName 10.220.0.11
+        Port 22
+        ForwardAgent yes
+        IdentityFile ~/.ssh/ops-id-ed25519.priv
+        IdentitiesOnly yes
+
+      Host opsbox
+        HostName 10.220.0.100
+        Port 22
+        ForwardAgent yes
+        IdentityFile ~/.ssh/ops-id-ed25519.priv
+        IdentitiesOnly yes
+
     '';
   };
 }

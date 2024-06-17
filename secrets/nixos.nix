@@ -85,7 +85,6 @@ in {
           # ---------------------------------------------
           # no one can read/write this file, even root.
           # ---------------------------------------------
-
           # .age means the decrypted file is still encrypted by age(via a passphrase)
           # https://rgoulter.com/blog/posts/programming/2022-06-10-a-visual-explanation-of-gpg-subkeys.html
           "sparkx-gpg-subkeys.priv.age" =
@@ -97,12 +96,11 @@ in {
           # ---------------------------------------------
           # only root can read this file.
           # ---------------------------------------------
-
-          "wg-business.conf" =
-            {
-              file = "${mysecrets}/wg-business.conf.age";
-            }
-            // high_security;
+          # "wg-business.conf" =
+          #   {
+          #     file = "${mysecrets}/wg-business.conf.age";
+          #   }
+          #   // high_security;
 
           # Used only by NixOS Modules
           # smb-credentials is referenced in /etc/fstab, by ../hosts/ai/cifs-mount.nix
@@ -118,19 +116,36 @@ in {
           #   }
           #   // high_security;
 
-          "nix-access-tokens" =
-            {
-              file = "${mysecrets}/nix-access-tokens.age";
-            }
-            // high_security;
+          # "nix-access-tokens" =
+          #   {
+          #     file = "${mysecrets}/nix-access-tokens.age";
+          #   }
+          #   // high_security;
 
           # ---------------------------------------------
           # user can read this file.
           # ---------------------------------------------
-
-          "ssh-key-ops" =
+          "github-sparkxxx-id-ed25519.pub" =
             {
-              file = "${mysecrets}/ssh-key-ops.age";
+              file = "${mysecrets}/ssh/pub/github-sparkxxx-id-ed25519.pub.age";
+            }
+            // user_readable;
+
+          "github-sparkxxx-id-ed25519.priv" =
+            {
+              file = "${mysecrets}/ssh/priv/github-sparkxxx-id-ed25519.priv.age";
+            }
+            // user_readable;
+
+          "ops-id-ed25519.pub" =
+            {
+              file = "${mysecrets}/ssh/pub/ops-id-ed25519.pub.age";
+            }
+            // user_readable;
+
+          "ops-id-ed25519.priv" =
+            {
+              file = "${mysecrets}/ssh/priv/ops-id-ed25519.priv.age";
             }
             // user_readable;
 
@@ -151,16 +166,34 @@ in {
         # place secrets in /etc/
         environment.etc = {
           # wireguard config used with `wg-quick up wg-business`
-          "wireguard/wg-business.conf" = {
-            source = config.age.secrets."wg-business.conf".path;
-          };
+          # "wireguard/wg-business.conf" = {
+          #   source = config.age.secrets."wg-business.conf".path;
+          # };
 
           # "agenix/rclone.conf" = {
           #   source = config.age.secrets."rclone.conf".path;
           # };
 
-          "agenix/ssh-key-ops" = {
-            source = config.age.secrets."ssh-key-ops".path;
+          "agenix/ssh/pub/github-sparkxxx-id-ed25519.pub" = {
+            source = config.age.secrets."github-sparkxxx-id-ed25519.pub".path;
+            mode = "0600";
+            user = myvars.username;
+          };
+
+          "agenix/ssh/priv/github-sparkxxx-id-ed25519.priv" = {
+            source = config.age.secrets."github-sparkxxx-id-ed25519.priv".path;
+            mode = "0600";
+            user = myvars.username;
+          };
+
+          "agenix/ssh/pub/ops-id-ed25519.pub" = {
+            source = config.age.secrets."ops-id-ed25519.pub".path;
+            mode = "0600";
+            user = myvars.username;
+          };
+
+          "agenix/ssh/priv/ops-id-ed25519.priv" = {
+            source = config.age.secrets."ops-id-ed25519.priv".path;
             mode = "0600";
             user = myvars.username;
           };

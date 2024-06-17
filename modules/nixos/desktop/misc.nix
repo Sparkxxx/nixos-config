@@ -4,11 +4,20 @@
   pkgs,
   ...
 }: {
+  # To use VS Code under Wayland, set the environment variable NIXOS_OZONE_WL=1:
+  environment = {
+    sessionVariables = {
+      #LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+      NIXOS_OZONE_WL = "1";
+    };
+  };
+
   # add user's shell into /etc/shells
   environment.shells = with pkgs; [
     bashInteractive
-    nushellFull
+    nushell
   ];
+
   # set user's default shell system-wide
   users.defaultUserShell = pkgs.bashInteractive;
 
@@ -36,18 +45,19 @@
     # so that you don’t have to type in passphrases every time you make an SSH connection.
     # Use `ssh-add` to add a key to the agent.
     ssh.startAgent = true;
-    
+
     # dconf is a low-level configuration system.
     dconf.enable = true;
 
     # Could not detect a default hypervisor. Make sure the appropriate QEMU/KVM virtualization packages are installed to manage virtualization on this host.
-    # A virtualization connection can be manually added via File->Add Connection or like this, check the page https://nixos.wiki/wiki/Virt-manager 
-    # dconf.settings = {
-    #   "org/virt-manager/virt-manager/connections" = {
-    #     autoconnect = ["qemu:///system"];
-    #     uris = ["qemu:///system"];
-    #   };
-    # };
+    # A virtualization connection can be manually added via File->Add Connection or like this, check the page https://nixos.wiki/wiki/Virt-manager
+    # https://github.com/nix-community/home-manager/issues/2106#issuecomment-1479114851 - It would be nice to have a note in the docs for dconf.settings mentioning that this option is known to not work -- I just spent a while trying to figure out what I was doing wrong before I found this issue.
+    #     dconf.settings = {
+    #       "org/virt-manager/virt-manager/connections" = {
+    #         autoconnect = ["qemu:///system"];
+    #         uris = ["qemu:///system"];
+    #       };
+    #     };
 
     # thunar file manager(part of xfce) related options
     # thunar = {

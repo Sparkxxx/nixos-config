@@ -2,13 +2,13 @@
   pkgs,
   pkgs-unstable,
   pkgs-stable,
-  nur-ryan4yin,
+  #nur-ryan4yin,
   ...
 }: {
   home.packages = with pkgs; [
     # creative
     blender # 3d modeling
-    gimp      # image editing, I prefer using figma in browser instead of this one
+    gimp # image editing, I prefer using figma in browser instead of this one
     inkscape # vector graphics
     krita # digital painting
     musescore # music notation
@@ -24,10 +24,15 @@
     #pkgs-unstable.nextpnr # fpga place and route
     #pkgs-unstable.openfpgaloader # fpga programming
     #nur-ryan4yin.packages.${pkgs.system}.gowin-eda-edu-ide # app: `gowin-env` => `gw_ide` / `gw_pack` / ...
+
+    # Calibre books
+    (calibre.override {
+      unrarSupport = true;
+    })
   ];
 
   programs = {
-    # live streaming
+    # live streaming - https://nixos.wiki/wiki/OBS_Studio
     obs-studio = {
       enable = true;
       plugins = with pkgs-stable.obs-studio-plugins; [

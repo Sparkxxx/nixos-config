@@ -22,4 +22,11 @@ in {
       export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
     '';
   };
+
+  #sgpt
+  # programs.shell_gpt = {
+  #   enable = true;
+  #   configFile.source = ./config/shell_gpt/.sgptrc;
+  #   inherit shellAliases;
+  # };
 }

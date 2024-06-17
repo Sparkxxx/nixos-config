@@ -26,8 +26,15 @@
     # embedded development
     minicom
 
-    # ai related
-    python311Packages.huggingface-hub # huggingface-cli
+    # AI related
+    pkgs-unstable.oterm # https://github.com/ggozad/oterm  Text-based terminal client, after installing Ollama all you have to do is type oterm in the terminal.
+    #ollama # https://wiki.nixos.org/wiki/Ollama
+    lmstudio
+    #shell-gpt - https://www.youtube.com/watch?v=FqOx_qOLPDM
+    shell-gpt
+    # # To communicate with local LLM backends, ShellGPT utilizes LiteLLM
+    # python311Packages.litellm
+    # python311Packages.huggingface-hub # huggingface-cli
 
     # misc
     pkgs-unstable.devbox

@@ -33,15 +33,36 @@
       enableOnBoot = true;
     };
 
+    # Podman conflicts with Docker
+    # podman = {
+    #   enable = true;
+    #   # Create a `docker` alias for podman, to use it as a drop-in replacement
+    #   dockerCompat = true;
+    #   # Required for containers under podman-compose to be able to talk to each other.
+    #   defaultNetwork.settings.dns_enabled = true;
+    #   # Periodically prune Podman resources
+    #   autoPrune = {
+    #     enable = true;
+    #     dates = "weekly";
+    #     flags = ["--all"];
+    #   };
+    # };
+
     libvirtd = {
       enable = true;
       # hanging this option to false may cause file permission issues for existing guests.
       # To fix these, manually change ownership of affected files in /var/lib/libvirt/qemu to qemu-libvirtd.
       qemu.runAsRoot = true; ## ??
     };
-    
+
     waydroid.enable = true;
-    lxd.enable = true;
+
+    # virtualisation.docker.enableNvidia = true; # for nvidia-docker
+    # libnvidia-container does not support cgroups v2 (prior to 1.8.0)
+    # https://github.com/NVIDIA/nvidia-docker/issues/1447
+    # setting enableUnifiedCgroupHierarchy to true will conflict with virtualisation.nix -> lxd.enable = true;
+    # systemd.enableUnifiedCgroupHierarchy = true; - defined in hosts/twr-z790/default.nix
+    lxd.enable = false;
   };
 
   environment.systemPackages = with pkgs; [

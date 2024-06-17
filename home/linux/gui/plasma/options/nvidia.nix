@@ -11,6 +11,7 @@ in {
   };
 
   config = mkIf (cfg.enable && cfg.nvidia) {
+    # # https://mynixos.com/home-manager/options/wayland.windowManager - no plasma option here !!!
     # wayland.windowManager.plasma.settings.env = [
     #   # for plasma with nvidia gpu, ref https://wiki.hyprland.org/Nvidia/
     #   "LIBVA_DRIVER_NAME,nvidia"

@@ -1,4 +1,6 @@
 # https://github.com/fufexan/dotfiles/blob/483680e121b73db8ed24173ac9adbcc718cbbc6e/system/programs/gamemode.nix
+# https://github.com/fufexan/nix-gaming
+# https://search.nixos.org/packages?channel=24.05&from=0&size=50&sort=relevance&type=packages&query=Lutris
 {
   config,
   pkgs,

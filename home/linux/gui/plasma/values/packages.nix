@@ -42,6 +42,6 @@
     kdePackages.kmail-account-wizard # Application which assists you with the configuration of accounts in KMail
     kdePackages.kdepim-addons # Add-ons for KDE PIM apps (KMail, KAddressBook etc.)
     kdePackages.kmailtransport # Library, KCM and KDED module to manage mail transport
-
+    kdePackages.ktorrent
   ];
 }

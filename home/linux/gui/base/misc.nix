@@ -5,19 +5,22 @@
 }: {
   home.packages = with pkgs; [
     # GUI apps
-    
+
     # Browsers
     firefox
     brave
     ungoogled-chromium
- 
+
+    # Email
+    betterbird
+
     # Video players
     smplayer
     vlc
     # kaffeine
-    mpd 
+    mpd
     mpd-mpris
-    
+
     # e-book viewer(.epub/.mobi/...)
     foliate # do not support .pdf
 
@@ -26,10 +29,7 @@
     discord
     skypeforlinux
     whatsapp-for-linux
-    #pkgs-unstable.qq # https://github.com/NixOS/nixpkgs/tree/master/pkgs/applications/networking/instant-messengers/qq
-
-    # Email 
-    betterbird
+    # teams-for-linux
 
     # remote desktop(rdp connect)
     remmina
@@ -45,7 +45,6 @@
     clinfo
     aha
     wayland-utils
-
   ];
 
   # GitHub CLI tool

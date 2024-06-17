@@ -12,6 +12,7 @@
     settings = {
       #color_theme = "catppuccin_mocha";
       theme_background = false; # make btop transparent
+      # comment
     };
   };
 }

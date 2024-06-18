@@ -7,7 +7,32 @@
   boot.supportedFilesystems = [
     "cifs"
     "davfs"
+    "sshfs"
   ];
+
+  # DOES NOT WORK !!!
+  # without the folder pre created it does not start home-manager with it created throws this:
+  # just plasma -> the following new units were started: home-sparkx-ops\x2ddockers.automount,
+  # locate ops-dockers
+  # /home/sparkx/ops-dockers
+  # sudo ls -al /home/sparkx/ops-dockers
+  # ls: cannot open directory '/home/sparkx/ops-dockers': No such device
+  # mount vm remote home folder as sshfs on current host
+  # fileSystems."/run/media/${myvars.username}/ops-dockers" = {
+  #   device = "${myvars.username}@10.220.0.5:/";
+  #   fsType = "sshfs";
+  #   options =
+  #     [ # Filesystem options
+  #       "allow_other"          # for non-root access
+  #       "_netdev"              # this is a network fs
+  #       "x-systemd.automount"  # mount on demand
+
+  #       # SSH options
+  #       "reconnect"              # handle connection drops
+  #       "ServerAliveInterval=15" # keep connections alive
+  #       "IdentityFile=/etc/agenix/ssh/priv/ops-id-ed25519.priv"
+  #     ];
+  # };
 
   # mount a smb/cifs share
   # fileSystems."/home/${myvars.username}/SMB-Downloads" = {

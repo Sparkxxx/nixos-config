@@ -1,6 +1,6 @@
 {
   pkgs,
-  nix-vscode-extensions,
+  #nix-vscode-extensions,
   myvars,
   ...
 }: {
@@ -81,6 +81,8 @@
 
     vscode = {
       enable = true;
+
+      # changing mutable from true/false or back will need reboot - home manager process will fail to start
       mutableExtensionsDir = true;
       # enableUpdateCheck = false;
       # enableExtensionUpdateCheck = false;
@@ -100,6 +102,8 @@
         mikestead.dotenv
 
         continue.continue
+        # privy.privy-vscode - Real time code completion
+        # rjmacarthy.twinny - Locally hosted AI code completion plugin for vscode
 
         #pinage404.nix-extension-pack #not working for some reason can't find it - components below
 
@@ -113,9 +117,13 @@
         seatonjiang.gitmoji-vscode
         yzhang.markdown-all-in-one
 
+        jnoortheen.nix-ide
+
         # Not available from here for me YET !!!
         #esphome.esphome-vscode
         #kelvin.vscode-sshfs
+        #keesschollaart.vscode-home-assistant
+        #ms-vscode.notepadplusplus-keybindings
       ];
       #       ++ (with pkgs.vscode-marketplace; [
       #         # https://raw.githubusercontent.com/nix-community/nix-vscode-extensions/master/data/cache/vscode-marketplace-latest.json
@@ -190,8 +198,10 @@
             "label" = "dockers";
             "host" = "10.220.0.5";
             "username" = "${myvars.username}";
-            "hop" = "dockers";
+            "agent" = "$SSH_AUTH_SOCK";
+            "privateKeyPath" = "/home/${myvars.username}/.ssh/ops-id-ed25519.priv";
             "root" = "/root";
+            "hop" = "dockers";
           }
         ];
       };

@@ -8,6 +8,11 @@
   # ${mysecrets} links to where the .age files are located
   #home.file.".ssh/github-sparkxxx-id-ed25519.pub".source = "${mysecrets}/ssh/pub/github-sparkxxx-id-ed25519.pub.age";
 
+  ## lrwxrwxrwx /nix/store/2vr9ydls3mr2jzgh6b0b9rwr6r3xkq58-home-manager-files/.ssh/github-sparkxxx-id-ed25519.priv
+  ## Using config.lib.file.mkOutOfStoreSymlink "/etc/agenix/ssh/priv/github-sparkxxx-id-ed25519.priv"
+  ## will expose your secrets in nix store which is world readable !!!
+  ## TODO find another solution like linking directly to the file
+
   # Keys needed to connect to private github.com repos
   home.file.".ssh/github-sparkxxx-id-ed25519.pub".source = config.lib.file.mkOutOfStoreSymlink "/etc/agenix/ssh/pub/github-sparkxxx-id-ed25519.pub";
   home.file.".ssh/github-sparkxxx-id-ed25519.priv".source = config.lib.file.mkOutOfStoreSymlink "/etc/agenix/ssh/priv/github-sparkxxx-id-ed25519.priv";

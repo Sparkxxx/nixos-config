@@ -1,6 +1,7 @@
 {
   pkgs,
   nix-vscode-extensions,
+  myvars,
   ...
 }: {
   # refer to https://codeberg.org/dnkl/foot/src/branch/master/foot.ini
@@ -181,6 +182,16 @@
             "emoji" = "🤖 TEST:";
             "code" = ":robot: TEST:";
             "description" = "... Anything related to tests";
+          }
+        ];
+        "sshfs.configs" = [
+          {
+            "name" = "dockers";
+            "label" = "dockers";
+            "host" = "10.220.0.5";
+            "username" = "${myvars.username}";
+            "hop" = "dockers";
+            "root" = "/root";
           }
         ];
       };

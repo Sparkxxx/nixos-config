@@ -10,7 +10,7 @@
     "sshfs"
   ];
 
-  # DOES NOT WORK !!!
+  # DOES NOT WORK !!! - check /nixos-config/home/linux/gui/base/hm-sshfs-mounts.nix to make it work
   # without the folder pre created it does not start home-manager with it created throws this:
   # just plasma -> the following new units were started: home-sparkx-ops\x2ddockers.automount,
   # locate ops-dockers

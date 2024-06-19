@@ -55,6 +55,8 @@
     dmidecode # a tool that reads information about your system's hardware from the BIOS according to the SMBIOS/DMI standard
     parted
     alsa-utils # ALSA, the Advanced Linux Sound Architecture utils
+
+    sshfs
   ];
 
   # replace default editor with neovim

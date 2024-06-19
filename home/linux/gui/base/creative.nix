@@ -14,6 +14,9 @@
     musescore # music notation
     #reaper # audio production
     sonic-pi # music programming
+    shortcut # Free, open source, cross-platform video editor
+
+    frigate # NVR with realtime local object detection for IP cameras
 
     # this app consumes a lot of storage, so do not install it currently
     # kicad     # 3d printing, eletrical engineering

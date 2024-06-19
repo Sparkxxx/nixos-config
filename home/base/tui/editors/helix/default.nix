@@ -4,7 +4,7 @@
   ...
 }: {
   # https://github.com/catppuccin/helix
-  xdg.configFile."helix/themes".source = "${nur-ryan4yin.packages.${pkgs.system}.catppuccin-helix}/themes/default";
+  #xdg.configFile."helix/themes".source = "${nur-ryan4yin.packages.${pkgs.system}.catppuccin-helix}/themes/default";
 
   programs.helix = {
     enable = true;

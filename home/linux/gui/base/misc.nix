@@ -19,7 +19,7 @@
     vlc
     # kaffeine
     mpd
-    mpd-mpris
+    #mpd-mpris
 
     # e-book viewer(.epub/.mobi/...)
     foliate # do not support .pdf
@@ -39,6 +39,7 @@
     # misc
     flameshot
     ventoy # cli multi-boot usb creator
+    krusader # Twin panel file management
 
     ## mine
     intel-compute-runtime

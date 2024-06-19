@@ -1,5 +1,5 @@
 # ==============================================
-# Based on doomemacs's auther's config:
+# Based on doomemacs's author's config:
 #   https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix
 #
 # Emacs Tutorials:
@@ -15,14 +15,14 @@
 }:
 with lib; let
   cfg = config.modules.editors.emacs;
-  envExtra = ''
-    export PATH="${config.xdg.configHome}/emacs/bin:$PATH"
-  '';
+  # envExtra = ''
+  #   export PATH="${config.xdg.configHome}/emacs/bin:$PATH"
+  # '';
   shellAliases = {
     e = "emacsclient --create-frame"; # gui
-    et = "emacsclient --create-frame --tty"; # termimal
+    et = "emacsclient --create-frame --tty"; # terminal
   };
-  librime-dir = "${config.xdg.dataHome}/emacs/librime";
+  #librime-dir = "${config.xdg.dataHome}/emacs/librime";
   parinfer-rust-lib-dir = "${config.xdg.dataHome}/emacs/parinfer-rust";
   myEmacsPackagesFor = emacs: ((pkgs.emacsPackagesFor emacs).emacsWithPackages (epkgs: [
     epkgs.vterm
@@ -65,13 +65,13 @@ in {
       home.shellAliases = shellAliases;
       programs.nushell.shellAliases = shellAliases;
 
-      xdg.configFile."doom" = {
-        source = ./doom;
-        force = true;
-      };
+      # xdg.configFile."doom" = {
+      #   source = ./doom;
+      #   force = true;
+      # };
 
       home.activation.installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        ${pkgs.rsync}/bin/rsync -avz --chmod=D2755,F744 ${doomemacs}/ ${config.xdg.configHome}/emacs/
+        #${pkgs.rsync}/bin/rsync -avz --chmod=D2755,F744 ${doomemacs}/ ${config.xdg.configHome}/emacs/
 
         # librime for emacs-rime
         mkdir -p ${librime-dir}

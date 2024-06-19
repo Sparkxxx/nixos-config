@@ -1,7 +1,6 @@
 {
   pkgs,
   pkgs-unstable,
-  nur-ryan4yin,
   ...
 }:
 # media - control and enjoy audio/video
@@ -16,7 +15,7 @@
     nvtopPackages.full
 
     # video/audio tools
-    cava # for visualizing audio
+    cava # for visualizing audio cli
     libva-utils
     vdpauinfo
     vulkan-tools

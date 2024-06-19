@@ -26,19 +26,19 @@
   #   - DNS Servers: 1.1.1.1, 1.0.0.1
 
   # config with yml file and docker - https://github.com/mogorman/dotfiles/blob/6c45a55fbf94f85491854d4e92a7a37ced0f5175/services/frigate.nix
-  #
+  # http://127.0.0.1:1984/
 
   # hwdec with gpu
-  systemd.services.frigate = {
-    environment.LIBVA_DRIVER_NAME = "nvidia-vaapi-driver";
-    serviceConfig = {
-      SupplementaryGroups = ["render" "video"]; # for access to dev/dri/*
-      AmbientCapabilities = "CAP_PERFMON";
-    };
-  };
+  # systemd.services.frigate = {
+  #   environment.LIBVA_DRIVER_NAME = "nvidia-vaapi-driver";
+  #   serviceConfig = {
+  #     SupplementaryGroups = ["render" "video"]; # for access to dev/dri/*
+  #     AmbientCapabilities = "CAP_PERFMON";
+  #   };
+  # };
 
   services.frigate = {
-    enable = true;
+    enable = false;
     hostname = "localhost";
 
     settings = {
@@ -46,6 +46,7 @@
         enabled = false;
         host = "http://192.168.1.16";
       };
+
       #detectors.ov = {
       #  type = "openvino";
       #  device = "AUTO";
@@ -119,13 +120,18 @@
   };
 
   # Restream configuration
+  # https://github.com/AlexxIT/go2rtc/tree/v1.8.3?tab=readme-ov-file#module-webrtc
   services.go2rtc = {
-    enable = true;
+    enable = false;
     settings = {
       ## streams restreams what we write here
       streams = {
         "hala_fatza" = [
-          "10.116.0.2:8555"
+          "127.0.0.1:8555"
+          #"stun:8555"
+        ];
+        "dh-ipc-10503" = [
+          "127.0.0.1:8555"
           #"stun:8555"
         ];
       };

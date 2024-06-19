@@ -14,7 +14,7 @@
     musescore # music notation
     #reaper # audio production
     sonic-pi # music programming
-    shortcut # Free, open source, cross-platform video editor
+    shotcut # Free, open source, cross-platform video editor
 
     frigate # NVR with realtime local object detection for IP cameras
 

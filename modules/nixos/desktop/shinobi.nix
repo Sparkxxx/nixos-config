@@ -3,6 +3,10 @@
   pkgs,
   ...
 }: {
+  # TODO Clarify subject More work is needed to get Nvidia Prime
+  # https://discourse.nixos.org/t/docker-nvidia-container-runtime-not-detected/36733/2
+  # https://medium.com/@social.iodols/managing-docker-containers-in-nixos-fbda0f666dd1
+
   virtualisation.oci-containers = {
     backend = "docker";
     containers = {

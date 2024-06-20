@@ -16,6 +16,9 @@
   # boot.kernelModules = ["kvm-intel"];
   # boot.extraModprobeConfig = "options kvm_intel nested=1"; # for intel cpu
 
+  # TODO Clarify subject More work is needed to get Nvidia Prime
+  # https://discourse.nixos.org/t/docker-nvidia-container-runtime-not-detected/36733/2
+
   boot.kernelModules = ["vfio-pci"];
 
   # https://nixos.wiki/wiki/Virt-manager

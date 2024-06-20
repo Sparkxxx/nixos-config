@@ -117,6 +117,12 @@
 
         #lm studio - to determine if all should be backed up or just the models folder !!!
         ".cache/lm-studio"
+        # vscode extension Open-source autopilot - build your own AI software development system
+        {
+          # pulumi - infrastructure as code
+          directory = ".continue";
+          mode = "0700";
+        }
 
         # obsidian.md - note taking app
         ".obsidian"
@@ -162,6 +168,9 @@
         # browsers
         ".mozilla"
         ".config/google-chrome"
+
+        # email clients
+        ".thunderbird"
 
         # neovim / remmina / flatpak / ...
         ".local/share"

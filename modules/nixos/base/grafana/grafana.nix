@@ -1,22 +1,76 @@
-{
-  fetchFromGitHub,
-  buildGoModule,
-}:
-buildGoModule rec {
-  pname = "dashboard-linter";
-  version = "0.0.1";
+{config, ...}: {
+  imports = [../consul-catalog.nix];
 
-  src = fetchFromGitHub {
-    owner = "grafana";
-    repo = "dashboard-linter";
-    rev = "b1f5eb2cca53b30525eeca68d65e5ba017e90df2";
-    sha256 = "0a1gf6y5vlyrbhmqsgqh91s74wp2saylaqr3rmag7yjhjpi4s4gq";
+  services.grafana = {
+    enable = true;
+    settings.server.http_addr = "0.0.0.0";
+    settings."auth.anonymous" = {
+      enabled = true;
+      org_role = "Editor";
+    };
+
+    provision = {
+      enable = true;
+      datasources.settings.datasources = [
+        {
+          name = "Prometheus";
+          isDefault = true;
+          type = "prometheus";
+          url = "http://nuc:9090";
+        }
+        {
+          name = "Loki";
+          type = "loki";
+          url = "http://nuc:3100";
+        }
+        {
+          name = "Alertmanager";
+          type = "alertmanager";
+          url = "http://nuc:9093";
+          jsonData.implementation = "prometheus";
+          jsonData.handleGrafanaManagedAlerts = true;
+        }
+      ];
+
+      dashboards.settings.providers = [
+        {
+          options.path = "/etc/dashboards";
+        }
+      ];
+    };
   };
 
-  vendorHash = "sha256-BRe+I1tZZw0YXLhidLbapIrqP55vuSx/gSADLW0PXL0=";
-
-  meta = {
-    description = " A tool to lint Grafana dashboards ";
-    homepage = "https://github.com/grafana/dashboard-linter";
+  services.grafana-image-renderer = {
+    enable = true;
+    provisionGrafana = true;
+    settings.service.metrics.enabled = true;
   };
+
+  # Provision each dashboard in /etc/dashboard
+  environment.etc =
+    builtins.mapAttrs
+    (
+      name: _: {
+        target = "dashboards/${name}";
+        source = ./. + "/dashboards/${name}";
+      }
+    )
+    (builtins.readDir ./dashboards);
+
+  networking.firewall.allowedTCPPorts = [
+    config.services.grafana.settings.server.http_port
+    config.services.grafana-image-renderer.settings.service.port
+  ];
+
+  services.consul.catalog = [
+    {
+      name = "grafana";
+      port = config.services.grafana.settings.server.http_port;
+      tags = (import ../lib/traefik.nix).tagsForHost "metrics";
+    }
+    {
+      name = "grafana-image-renderer";
+      port = config.services.grafana-image-renderer.settings.service.port;
+    }
+  ];
 }

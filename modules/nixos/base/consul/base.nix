@@ -7,7 +7,7 @@
     enable = true;
 
     extraConfig = {
-      retry_join = ["nuc"];
+      retry_join = ["localhost"];
 
       client_addr = ["0.0.0.0"];
 

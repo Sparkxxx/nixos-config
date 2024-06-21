@@ -8,7 +8,7 @@
   home.packages = with pkgs; [
     # creative
     blender # 3d modeling
-    gimp # image editing, I prefer using figma in browser instead of this one
+    gimp-with-plugins # image editing, I prefer using figma in browser instead of this one
     inkscape # vector graphics
     krita # digital painting
     musescore # music notation
@@ -16,10 +16,11 @@
     sonic-pi # music programming
     shotcut # Free, open source, cross-platform video editor
 
-    frigate # NVR with realtime local object detection for IP cameras
+    #frigate # NVR with realtime local object detection for IP cameras
 
     # this app consumes a lot of storage, so do not install it currently
     # kicad     # 3d printing, eletrical engineering
+    qcad # 2D CAD for Windows, Linux and Mac
 
     # fpga
     #pkgs-unstable.python311Packages.apycula # gowin fpga

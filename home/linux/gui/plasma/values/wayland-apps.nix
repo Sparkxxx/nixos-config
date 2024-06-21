@@ -101,7 +101,7 @@
 
         mikestead.dotenv
 
-        continue.continue
+        continue.continue # ~/.continue added to impermanence
         # privy.privy-vscode - Real time code completion
         # rjmacarthy.twinny - Locally hosted AI code completion plugin for vscode
 

@@ -10,9 +10,17 @@
     firefox
     brave
     ungoogled-chromium
+    tor-browser
 
     # Email
     betterbird
+
+    # Office
+    libreoffice
+    pdf2odt # PDF to ODT/ODS format converter
+    pdfchain # graphical user interface for the PDF Toolkit
+    pdf-sign # A tool to add signature visually inside PDF files
+    pdfminer # tool for extracting information from PDF documents
 
     # Video players
     smplayer
@@ -46,6 +54,19 @@
     clinfo
     aha
     wayland-utils
+    gpa # Graphical user interface for the GnuPG
+    #lorri # a nix-shell replacement for project development
+
+    ## tor network
+    tor # Anonymizing overlay network
+    torctl # Script to redirect all traffic through tor network including dns queries for anonymizing entire system
+    nyx # Command-line monitor for Tor
+    eschalot # Tor hidden service name generator
+    # obfs4 # Circumvents censorship by transforming Tor traffic between clients and bridges
+
+    sweethome3d.application # Design and visualize your future home
+    sweethome3d.textures-editor # Easily create SH3T files and edit the properties of the texture images it contain
+    sweethome3d.furniture-editor # Quickly create SH3F files and edit the properties of the 3D models it contain
   ];
 
   # GitHub CLI tool

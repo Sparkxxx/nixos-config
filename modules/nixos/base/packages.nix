@@ -34,6 +34,9 @@
     bpftrace # powerful tracing tool
     tcpdump # network sniffer
     lsof # list open files
+    screen
+    git-crypt # transparent file encryption in git
+    fzf # general-purpose command-line fuzzy finder
 
     # system monitoring
     sysstat

@@ -21,6 +21,8 @@
     pdfchain # graphical user interface for the PDF Toolkit
     pdf-sign # A tool to add signature visually inside PDF files
     pdfminer # tool for extracting information from PDF documents
+    zathura # document viewer
+    drawio
 
     # Video players
     smplayer
@@ -28,6 +30,10 @@
     # kaffeine
     mpd
     #mpd-mpris
+    gst_all_1.gstreamer
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-bad
+    gst_all_1.gst-plugins-ugly
 
     # e-book viewer(.epub/.mobi/...)
     foliate # do not support .pdf
@@ -38,6 +44,9 @@
     skypeforlinux
     whatsapp-for-linux
     # teams-for-linux
+    zoom-us
+    #add matrix
+    quasselClient
 
     # remote desktop(rdp connect)
     remmina
@@ -56,6 +65,7 @@
     wayland-utils
     gpa # Graphical user interface for the GnuPG
     #lorri # a nix-shell replacement for project development
+    vorta # https://vorta.borgbase.com/
 
     ## tor network
     tor # Anonymizing overlay network

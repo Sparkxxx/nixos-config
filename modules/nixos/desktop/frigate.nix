@@ -3,6 +3,8 @@
   myvars,
   ...
 }: {
+  # package installed in: home/linux/gui/base/creative.nix
+  # https://community.home-assistant.io/t/how-to-send-frigate-event-snapshot-to-telegram/428025
   #https://github.com/rafaelsgirao/nixos-config/blob/c25f2e3d9a0ba8288d658540d31da247497c7f64/modules/archive/frigate.nix
   # STATE:
   # - h264 (h264+ disabled on Hikvision; Smart Codec disabled on Dahua)

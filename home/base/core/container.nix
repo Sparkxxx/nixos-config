@@ -12,6 +12,7 @@
     kubectl
     krew # Package manager for kubectl plugins
     # kubevpn # Cloud-Native Dev Environment that seamlessly connects to your Kubernetes cluster network.
+
     istioctl
     kubevirt # virtctl
     kubernetes-helm

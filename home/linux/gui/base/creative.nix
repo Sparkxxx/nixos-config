@@ -9,18 +9,22 @@
     # creative
     blender # 3d modeling
     gimp-with-plugins # image editing, I prefer using figma in browser instead of this one
-    inkscape # vector graphics
+    inkscape-with-extensions # vector graphics
     krita # digital painting
     musescore # music notation
     #reaper # audio production
     sonic-pi # music programming
     shotcut # Free, open source, cross-platform video editor
 
+    # frigate config in: modules/nixos/desktop/frigate.nix
     #frigate # NVR with realtime local object detection for IP cameras
 
     # this app consumes a lot of storage, so do not install it currently
     # kicad     # 3d printing, eletrical engineering
     qcad # 2D CAD for Windows, Linux and Mac
+    openscad-unstable # for creating solid 3D CAD objects
+
+    krita # https://krita.org - painting and animation program
 
     # fpga
     #pkgs-unstable.python311Packages.apycula # gowin fpga

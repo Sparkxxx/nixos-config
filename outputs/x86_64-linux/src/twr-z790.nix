@@ -20,7 +20,7 @@
       # host specific - basic
       "hosts/${name}"
       # host specific services
-      #"modules/nixos/optional/portainer.nix"
+      "modules/optional/hosts/${name}.nix"
     ];
     home-modules = map mylib.relativeToRoot [
       # common

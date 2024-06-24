@@ -21,6 +21,11 @@ local name mode="default":
 test:
   nix eval .#evalTests --show-trace --print-build-logs --verbose
 
+# Repair nix-store
+# error: path '/nix/store/wlh8i13fqw1i0a6x2y3i41sr9fm5sw11-source/flake.nix' does not exist
+nix-store-repair:
+  sudo nix-store --verify --check-contents --repair
+
 # update all the flake inputs
 up:
   nix flake update

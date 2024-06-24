@@ -17,8 +17,10 @@
       # common
       "secrets/nixos.nix"
       "modules/nixos/desktop.nix"
-      # host specific
+      # host specific - basic
       "hosts/${name}"
+      # host specific services
+      #"modules/nixos/optional/portainer.nix"
     ];
     home-modules = map mylib.relativeToRoot [
       # common
@@ -78,7 +80,6 @@
       ]
       ++ base-modules.home-modules;
   };
-
 in {
   nixosConfigurations = {
     # with i3 window manager

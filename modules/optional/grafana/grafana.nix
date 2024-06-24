@@ -1,5 +1,5 @@
 {config, ...}: {
-  imports = [../consul-catalog.nix];
+  #imports = [../consul-catalog.nix];
 
   services.grafana = {
     enable = true;
@@ -16,17 +16,17 @@
           name = "Prometheus";
           isDefault = true;
           type = "prometheus";
-          url = "http://nuc:9090";
+          url = "http://localhost:9090";
         }
         {
           name = "Loki";
           type = "loki";
-          url = "http://nuc:3100";
+          url = "http://localhost:3100";
         }
         {
           name = "Alertmanager";
           type = "alertmanager";
-          url = "http://nuc:9093";
+          url = "http://localhost:9093";
           jsonData.implementation = "prometheus";
           jsonData.handleGrafanaManagedAlerts = true;
         }
@@ -66,7 +66,7 @@
     {
       name = "grafana";
       port = config.services.grafana.settings.server.http_port;
-      tags = (import ../lib/traefik.nix).tagsForHost "metrics";
+      tags = (import ../traefik/traefik.nix).tagsForHost "metrics";
     }
     {
       name = "grafana-image-renderer";

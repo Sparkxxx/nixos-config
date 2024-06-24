@@ -65,8 +65,10 @@ in {
     networkmanager.enable = true;
   };
 
-  # conflict with feature: containerd-snapshotter
-  virtualisation.docker.storageDriver = "btrfs";
+  # conflict with feature: containerd-snapshotter - when enabled oci-containers don't start
+  #un 24 11:55:41 twr-z790 dockerd[3749]: time="2024-06-24T11:55:41.932850050+03:00" level=warning msg="snapshot garbage collection failed" error="snapshot create failed: file exists" snapshotter=btrfs
+  #Jun 24 11:55:41 twr-z790 dockerd[3725]: time="2024-06-24T11:55:41.934795426+03:00" level=error msg="Handler for POST /v1.43/containers/create returned error: failed to mount : mkdir /var/lib/docker/rootfs/btrfs/42b7ec6b2c7d790ffa>
+  #virtualisation.docker.storageDriver = "btrfs";
 
   services.xserver.videoDrivers = ["nvidia"]; # will install nvidia-vaapi-driver by default
   #services.xserver.videoDrivers = ["i915"]; #

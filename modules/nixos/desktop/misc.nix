@@ -35,10 +35,11 @@
     gnumake
   ];
 
-  services = {
-    gvfs.enable = true; # Mount, trash, and other functionalities
-    tumbler.enable = true; # Thumbnail support for images
-  };
+  ## GNOME specific
+  # services = {
+  #   gvfs.enable = true; # Mount, trash, and other functionalities
+  #   tumbler.enable = true; # Thumbnail support for images
+  # };
 
   programs = {
     # The OpenSSH agent remembers private keys for you

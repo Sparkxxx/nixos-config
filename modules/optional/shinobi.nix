@@ -7,10 +7,14 @@
   # https://discourse.nixos.org/t/docker-nvidia-container-runtime-not-detected/36733/2
   # https://medium.com/@social.iodols/managing-docker-containers-in-nixos-fbda0f666dd1
 
+  ## Services are created with <backend>-<name>.service
+  ## EG: sudo systemctl status podman-portainer.service
   virtualisation.oci-containers = {
+    ## Specify backend otherwise portainer is used by default
     backend = "docker";
     containers = {
       shinobi = {
+        autoStart = true;
         image = "shinobisystems/shinobi:dev";
         volumes = [
           # /var/lib/ is added to impermanence for twr-z790

@@ -1,7 +1,7 @@
 {config, ...}: {
-  # imports = [
-  #   ./base.nix
-  # ];
+  imports = [
+    ./consul-base.nix
+  ];
 
   services.consul = {
     extraConfig = {

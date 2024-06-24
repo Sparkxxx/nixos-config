@@ -1,13 +1,28 @@
-{}: {
-  # imports = [
-  #   ./base.nix
-  # ];
+{
+  config,
+  lib,
+  ...
+}: let
+  domain = "twr-z790.iotec.ro";
+in {
+  tagsForHost = host: [
+    "traefik.enable=true"
+    "traefik.http.routers.${host}.rule=Host(`${host}`) || Host(`${host}.${domain}`)"
+    "traefik.http.routers.${host}.middlewares=${host}-canonical-name"
+    "traefik.http.middlewares.${host}-canonical-name.redirectregex.permanent=true"
+    "traefik.http.middlewares.${host}-canonical-name.redirectregex.regex=^http://${host}/(.*)"
+    "traefik.http.middlewares.${host}-canonical-name.redirectregex.replacement=http://${host}.${domain}/\${1}"
+  ];
 
-  services.consul = {
-    #interface.bind = "eno1";
-    extraConfig = {
-      server = true;
-      bootstrap_expect = 1;
+  services.traefik = {
+    enable = true;
+    staticConfigOptions = {
+      providers.consulCatalog = {
+        exposedByDefault = false;
+        prefix = "traefik";
+      };
     };
   };
+
+  networking.firewall.allowedTCPPorts = [80];
 }
